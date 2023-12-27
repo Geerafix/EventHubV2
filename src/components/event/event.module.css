@@ -1,4 +1,4 @@
-#eventData {
+.eventData {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -14,7 +14,7 @@
     background-color: #e3dccd;
 }
 
-.Event {
+.event {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -41,18 +41,21 @@ label {
     text-decoration: underline;
 }
 
-.main-container {
-    width: 1000px;
+.mainContainer {
+    margin-inline: auto;
+    min-width: 49.8vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-.control-container {
+.controlContainer {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     width: 100%;
 }
 
-.search-container {
+.searchContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -104,14 +107,14 @@ select:hover {
     box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
 }
 
-#add-event-button {
+.addEventButton {
     width: 40px;
     text-align: center;
     align-items: center;
 }
 
 .date {
-    max-width: 90px;
+    width: 100px;
 }
 
 .date:hover {
