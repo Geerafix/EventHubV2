@@ -1,4 +1,4 @@
-# EventManager
+# EventHub
 
 Aplikacja napisana w technologii React, umożliwiająca planowanie wydarzeń oraz zarządzanie nimi
 
