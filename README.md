@@ -1,6 +1,6 @@
 # EventManager
 
-Aplikacja napisana w technologii Angular, umożliwiająca planowanie wydarzeń oraz zarządzanie nimi
+Aplikacja napisana w technologii React, umożliwiająca planowanie wydarzeń oraz zarządzanie nimi
 
 # Uruchamianie 
 
