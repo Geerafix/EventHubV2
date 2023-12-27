@@ -1,0 +1,143 @@
+#eventData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    color: #14424b;
+    border-color: #D7C9AA;
+    box-shadow: 0px 0px 7px 0.01px rgb(146, 112, 108), inset 0 0 20px 1px #D7C9AA;
+    padding: 20px;
+    margin-block: 20px;
+    background-color: #e3dccd;
+}
+
+.Event {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Century Gothic", serif;
+    position: relative;
+    align-items: center;
+}
+
+label {
+    font-weight: 100;
+}
+
+.info {
+    font-weight: bold;
+}
+
+#info {
+    margin-left: auto;
+    text-decoration: none;
+}
+
+#info:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.main-container {
+    width: 1000px;
+}
+
+.control-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button, input, select {
+    font-family: 'Century Gothic', serif;
+    font-weight: bold;
+    color: #14424b;
+    padding: 10px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: rgba(178, 224, 222, 0.795);;
+    box-shadow: 0px 0px 7px 0.01px rgb(146, 112, 108), inset 0 0 1px 0.01px #1038404e;
+    transition: 0.2s;
+    outline: none;
+    max-height: 40px;
+    margin-inline: 5px;
+}
+
+input:focus {
+    cursor: text;
+    border: none;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
+}
+
+select {
+    appearance: none;
+    padding: auto;
+    text-align: center;
+    align-items: center;
+}
+
+select:focus {
+    border: none;
+    outline: none;
+}
+
+select:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
+}
+
+#add-event-button {
+    width: 40px;
+    text-align: center;
+    align-items: center;
+}
+
+.date {
+    max-width: 90px;
+}
+
+.date:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
+}
+
+#search {
+    width: 122px;
+}
+
+#clear-btn {
+    width: 40px;
+}
+
+.title {
+    margin-inline: auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.interact {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+  
