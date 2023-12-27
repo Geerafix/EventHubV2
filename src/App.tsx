@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from './components/event/event';
+import EventComponent from './components/event/event';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <header>
         <p>EventHub</p>
       </header>
-      <Event></Event>
+      <EventComponent></EventComponent>
     </div>
   );
 }

@@ -31,11 +31,6 @@ label {
     font-weight: bold;
 }
 
-#info {
-    margin-left: auto;
-    text-decoration: none;
-}
-
 #info:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -51,15 +46,13 @@ label {
 .controlContainer {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
     width: 100%;
 }
 
 .searchContainer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
 }
 
 button, input, select {
@@ -74,7 +67,6 @@ button, input, select {
     transition: 0.2s;
     outline: none;
     max-height: 40px;
-    margin-inline: 5px;
 }
 
 input:focus {
@@ -127,7 +119,7 @@ select:hover {
     width: 122px;
 }
 
-#clear-btn {
+.clearBtn {
     width: 40px;
 }
 
@@ -144,3 +136,7 @@ select:hover {
     gap: 20px;
 }
   
+.interact > :nth-child(1) {
+    margin-left: auto;
+    text-decoration: none;
+}
