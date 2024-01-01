@@ -1,0 +1,55 @@
+.EventDetails {}
+
+.eventData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    color: #14424b;
+    border-color: #bfd0b0;
+    box-shadow: 0px 0px 7px 0.01px #4b7483, inset 0 0 20px 1px #ccd7c0;
+    padding: 20px;
+    margin-block: 20px;
+    background-color: #d7dfd0;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
+}
+
+.info {
+    font-weight: bold;
+}
+
+.title {
+    margin-inline: auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+  
+.interact {
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+  
+.interact > :last-child {
+    color: red;
+}
+
+.backButton { 
+    width: 40px;
+    text-align: center;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+}
