@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useRef } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './event.module.css';
 import Event from '../../models/Event';
 import { Plan } from '../../models/Plan';
@@ -117,9 +117,6 @@ const EventComponent: FC<EventProps> = () => {
               <Route path="/" element={<Navigate to="/"/>}/>
             </Routes>
         </div>
-      {/* <div class="main-container" *ngIf="isAddEvent() || isBuyTicket() || isEventDetails() || isEditEvent()">
-        <router-outlet></router-outlet>
-      </div> */}
     </div>
   </Router>
   );

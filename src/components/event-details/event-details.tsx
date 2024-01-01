@@ -55,6 +55,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
 
   useEffect(() => {
     getSingleData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -81,7 +82,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
         <div className={styles.interact}>
           <Link to={`/kup-bilet/${ event?._id }`} className={styles.link}>Kup bilet</Link>
           <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj</Link>
-          <a className={styles.link}>Usuń</a>
+          {/* <a className={styles.link}>Usuń</a> */}
         </div>
       </div>
     </div>

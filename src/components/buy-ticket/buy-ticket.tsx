@@ -1,9 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './buy-ticket.module.css';
-import { Link, useParams} from 'react-router-dom';
-import Event from '../../models/Event';
-import { Plan } from '../../models/Plan';
-import { Participant } from '../../models/Participant';
+import { Link } from 'react-router-dom';
 
 interface BuyTicketProps {}
 

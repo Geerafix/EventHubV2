@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import styles from './add-event.module.css';
 import { Link } from 'react-router-dom';
-import PlanListForm from '../plan-list-form/plan-list-form';
 import { Plan } from '../../models/Plan';
 import AddPlan from '../add-plan/add-plan';
 
