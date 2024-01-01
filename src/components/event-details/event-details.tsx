@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Event from '../../models/Event';
 import { Plan } from '../../models/Plan';
 import { Participant } from '../../models/Participant';
+import PlanList from '../plan-list/plan-list';
 
 
 interface EventDetailsProps {}
@@ -76,7 +77,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
         <label><span className={styles.info}>Maks. ilość osób: </span>{event?._max_ilosc_osob}</label>
         <label><span className={styles.info}>Data wydarzenia: </span>{event?._data_wydarzenia.toString()}</label>
         <label><span className={styles.info}>Cena biletu: </span>{event?._cena_biletu}</label>
-        {/* <app-plan [eventPlan]="event._plan"></app-plan> */}
+        <PlanList eventPlan={event?._plan}></PlanList>
         <div className={styles.interact}>
           <Link to={`/kup-bilet/${ event?._id }`} className={styles.link}>Kup bilet</Link>
           <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj</Link>

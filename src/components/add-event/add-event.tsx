@@ -1,10 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './add-event.module.css';
 import { Link } from 'react-router-dom';
+import PlanListForm from '../plan-list-form/plan-list-form';
+import { Plan } from '../../models/Plan';
+import AddPlan from '../add-plan/add-plan';
 
 interface AddEventProps {}
 
 const AddEvent: FC<AddEventProps> = () => {
+  const [plan, setPlan] = useState<Plan[]>([]);
+
   return (
     <div className={styles.AddEvent}>
       <Link to="/">
@@ -31,7 +36,7 @@ const AddEvent: FC<AddEventProps> = () => {
 
           <input className={styles.formInput} name="cena_biletu" type="number" placeholder="Cena biletu"/>
 
-          {/* <app-add-plan [eventPlan]="eventPlan"></app-add-plan> */}
+          <AddPlan eventPlan={plan}></AddPlan>
 
           <button type="submit">Zatwierdź</button>
         </form>

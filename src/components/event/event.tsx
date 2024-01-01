@@ -16,6 +16,8 @@ const EventComponent: FC<EventProps> = () => {
   const apiUrl = "http://localhost:4200/events";
 
   const [eventList, setEventList] = useState<Event[]>([]);
+  const [filteredEventList, setFilteredEventList] = useState<Event[]>([]);
+  const [search, setSearch] = useState<string>('');
 
   const getData = () => {
     fetch(apiUrl, {
@@ -54,6 +56,7 @@ const EventComponent: FC<EventProps> = () => {
         });
         json = json.filter((event: Event) => event._data_wydarzenia > new Date());
         setEventList(json);
+        setFilteredEventList(json);
       });
   };
 
@@ -61,13 +64,22 @@ const EventComponent: FC<EventProps> = () => {
     getData();
   }, []);
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilteredEventList(eventList);
+    setSearch(e.target.value.toLowerCase());
+    const filtered = eventList.filter((event) =>
+      event._nazwa.toLowerCase().includes(search)
+    );
+    setFilteredEventList(filtered);
+  };
+
   return (
     <Router>
       <div className={styles.event}>
         <div className={styles.mainContainer}>
           <div className={styles.controlContainer}>
             <div className={styles.searchContainer}>
-              <input placeholder="Wyszukaj" className={styles.search}/>
+              <input placeholder="Wyszukaj" className={styles.search} value={search} onChange={handleSearchChange}/>
               <select>
                 <option value="nazwa">Nazwa</option>
                 <option value="rodzaj">Rodzaj</option>
@@ -84,7 +96,7 @@ const EventComponent: FC<EventProps> = () => {
               </Link>
             </div>
             {
-              eventList.map((event, i) => (
+              filteredEventList.map((event, i) => (
                 <div key = { i } className={styles.eventData}>
                   <h2 className={styles.title}>{event._nazwa}</h2>
                   <label><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</label>
