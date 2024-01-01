@@ -7,11 +7,11 @@
     border-style: solid;
     border-radius: 20px;
     color: #14424b;
-    border-color: #D7C9AA;
-    box-shadow: 0px 0px 7px 0.01px rgb(146, 112, 108), inset 0 0 20px 1px #D7C9AA;
+    border-color: #bfd0b0;
+    box-shadow: 0px 0px 7px 0.01px #4b7483, inset 0 0 20px 1px #ccd7c0;
     padding: 20px;
     margin-block: 20px;
-    background-color: #e3dccd;
+    background-color: #d7dfd0;
 }
 
 .event {
@@ -62,7 +62,7 @@ button, input, select {
     padding: 10px;
     border-radius: 20px;
     border-style: none;
-    background-color: rgba(178, 224, 222, 0.795);;
+    background-color: #99c7df;
     box-shadow: 0px 0px 7px 0.01px rgb(146, 112, 108), inset 0 0 1px 0.01px #1038404e;
     transition: 0.2s;
     outline: none;

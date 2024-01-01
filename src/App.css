@@ -5,7 +5,7 @@ html {
 header {
   text-align: center;
   font-size: 70px;
-  background-color: #19535F;
+  background-color: #334e6b;
   box-shadow: inset 0px -5px 8px -6px #023331;
   text-shadow: 0px 0px 20px #02363375;
   position: fixed;
@@ -16,14 +16,14 @@ header {
 
 body {
   margin-top: 112px;
-  background-color: #0B7A75;
+  background-color: #197694;
 }
 
 p  {
   font-family: "Century Gothic", serif;
   font-weight: bold;
   font-size: 75px;
-  color: rgba(212, 245, 243, 0.937);
+  color: #cde8f7;
   padding: 10px;
   margin-block-start: -15px;
   margin-block-end: -10px;
