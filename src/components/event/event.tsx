@@ -1,77 +1,21 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './event.module.css';
 import Event from '../../models/Event';
-import { Plan } from '../../models/Plan';
-import { Participant } from '../../models/Participant';
-import { BrowserRouter as Router, Routes, Link, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Link, Route, Navigate, useLocation } from 'react-router-dom';
 import EventDetails from '../event-details/event-details';
 import BuyTicket from '../buy-ticket/buy-ticket';
 import AddEvent from '../add-event/add-event';
 import EditEvent from '../edit-event/edit-event';
+import eds from '../../services/event-data-service/event-data-service';
 
 interface EventProps {}
 
 const EventComponent: FC<EventProps> = () => {
-
-  const apiUrl = "http://localhost:4200/events";
-
   const [eventList, setEventList] = useState<Event[]>([]);
-  const [filteredEventList, setFilteredEventList] = useState<Event[]>([]);
-  const [search, setSearch] = useState<string>('');
-
-  const getData = () => {
-    fetch(apiUrl, {
-        method: "GET",
-        redirect: "follow",
-      })
-      .then((response) => response.json())
-      .then((events) => {
-        let json = events.map((event: any) => {
-          return new Event(
-            event.id,
-            event.nazwa,
-            event.rodzaj,
-            event.organizator,
-            event.miejsce,
-            event.max_ilosc_osob,
-            new Date(event.data_wydarzenia),
-            event.cena_biletu,
-            event.plan.map((plan: any) => {
-              return new Plan(
-                plan.nazwa,
-                plan.godz_rozpoczecia,
-                plan.godz_zakonczenia
-              );
-            }),
-            event.uczestnicy.map((participant: any) => {
-              return new Participant(
-                participant.imie,
-                participant.nazwisko,
-                participant.wiek,
-                participant.email,
-                participant.nr_telefonu
-              );
-            })
-          );
-        });
-        json = json.filter((event: Event) => event._data_wydarzenia > new Date());
-        setEventList(json);
-        setFilteredEventList(json);
-      });
-  };
 
   useEffect(() => {
-    getData();
+    eds.getData().then(({ events }) => { setEventList(events); });
   }, []);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilteredEventList(eventList);
-    setSearch(e.target.value.toLowerCase());
-    const filtered = eventList.filter((event) =>
-      event._nazwa.toLowerCase().includes(search)
-    );
-    setFilteredEventList(filtered);
-  };
 
   return (
     <Router>
@@ -79,7 +23,7 @@ const EventComponent: FC<EventProps> = () => {
         <div className={styles.mainContainer}>
           <div className={styles.controlContainer}>
             <div className={styles.searchContainer}>
-              <input placeholder="Wyszukaj" className={styles.search} value={search} onChange={handleSearchChange}/>
+              <input placeholder="Wyszukaj" className={styles.search}/>
               <select>
                 <option value="nazwa">Nazwa</option>
                 <option value="rodzaj">Rodzaj</option>
@@ -96,7 +40,7 @@ const EventComponent: FC<EventProps> = () => {
               </Link>
             </div>
             {
-              filteredEventList.map((event, i) => (
+              eventList.map((event, i) => (
                 <div key = { i } className={styles.eventData}>
                   <h2 className={styles.title}>{event._nazwa}</h2>
                   <label><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</label>
@@ -109,6 +53,7 @@ const EventComponent: FC<EventProps> = () => {
                 </div>
               ))
             }
+
             <Routes>
               <Route path="/szczegoly/:id" element={<EventDetails/>} />
               <Route path="/kup-bilet/:id" element={<BuyTicket/>} />

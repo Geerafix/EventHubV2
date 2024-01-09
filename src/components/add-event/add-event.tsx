@@ -3,11 +3,15 @@ import styles from './add-event.module.css';
 import { Link } from 'react-router-dom';
 import { Plan } from '../../models/Plan';
 import AddPlan from '../add-plan/add-plan';
+import { useForm } from 'react-hook-form';
 
 interface AddEventProps {}
 
 const AddEvent: FC<AddEventProps> = () => {
-  const [plan, setPlan] = useState<Plan[]>([]);
+  const [plan] = useState<Plan[]>([]);
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data: any) => console.log(data);
 
   return (
     <div className={styles.AddEvent}>
@@ -19,9 +23,10 @@ const AddEvent: FC<AddEventProps> = () => {
         </button>
       </Link>
       <div className={styles.formContainer}>
-        <form className={styles.eventFormContainer}>
+        <form className={styles.eventFormContainer} onSubmit={handleSubmit(onSubmit)}>
           <label>Formularz dodawania wydarzenia</label>
-          <input className={styles.formInput} name="nazwa" placeholder="Nazwa wydarzenia"/>
+          <input className={styles.formInput} {...register("nazwa", { required: true })} placeholder="Nazwa wydarzenia"/>
+          {errors.nazwa && <span>To pole jest wymagane</span>}
 
           <input className={styles.formInput} name="rodzaj" placeholder="Rodzaj wydarzenia"/>
 
