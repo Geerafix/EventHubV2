@@ -1,6 +1,5 @@
-.formContainer {
-    display: flex;
-    flex-direction: column;
+.editFormContainer {
+    font-family: 'Century Gothic', serif;
     justify-content: center;
     align-items: center;
 }
@@ -9,7 +8,7 @@
     margin-bottom: 100px;
 }
 
-.eventFormContainer {
+.editEventFormContainer {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -32,10 +31,6 @@
     cursor: pointer;
 }
 
-main > button:nth-child(1) {
-    width: 40px;
-}
-
 input:focus {
     cursor: text;
     outline: none;
@@ -53,7 +48,18 @@ button:hover {
 }
 
 .formInput {
+    width: 300px;
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
 }
   
+.mainContainer {
+    margin-inline: auto;
+    max-width: 49.8vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.backButton {
+    width: 40px;
+}

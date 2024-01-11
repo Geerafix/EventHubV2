@@ -1,5 +1,6 @@
 
 .formContainer {
+    font-family: 'Century Gothic', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,6 +56,14 @@ button:hover {
 }
   
 .formInput {
+    width: 250px;
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
+}
+
+.mainContainer {
+    margin-inline: auto;
+    max-width: 49.8vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }

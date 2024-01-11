@@ -2,3 +2,9 @@
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
 }
+
+.createPlan {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

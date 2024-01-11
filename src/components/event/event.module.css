@@ -37,6 +37,7 @@ label {
 }
 
 .mainContainer {
+    font-family: 'Century Gothic', serif;
     margin-inline: auto;
     min-width: 49.8vw;
     flex-wrap: wrap;
@@ -67,6 +68,7 @@ button, input, select {
     transition: 0.2s;
     outline: none;
     max-height: 40px;
+    font-size: 15px;
 }
 
 input:focus {
