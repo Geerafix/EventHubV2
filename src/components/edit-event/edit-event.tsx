@@ -15,7 +15,7 @@ type AddEventForm = {
   organizator: string,
   miejsce: string,
   max_ilosc_osob: number,
-  data_wydarzenia: string,
+  data_wydarzenia: Date,
   cena_biletu: number,
   plan: Plan[],
   uczestnicy: Participant[]
@@ -47,7 +47,7 @@ const EditEvent: FC<EditEventProps> = () => {
           setValue('organizator', event._organizator);
           setValue('miejsce', event._miejsce);
           setValue('max_ilosc_osob', event._max_ilosc_osob);
-          setValue('data_wydarzenia', event._data_wydarzenia.toLocaleDateString());
+          setValue('data_wydarzenia', event._data_wydarzenia);
           setValue('cena_biletu', event._cena_biletu);
           setValue('plan', event._plan);
           setValue('uczestnicy', event._uczestnicy);
@@ -65,9 +65,7 @@ const EditEvent: FC<EditEventProps> = () => {
       <div className={styles.mainContainer}>
         <Link to={`/szczegoly/${ id }`}>
           <button className={styles.backButton}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-              <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16"><path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg>
           </button>
         </Link>
         <div className={styles.editFormContainer} onSubmit={handleSubmit(onSubmit)}>

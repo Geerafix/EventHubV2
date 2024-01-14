@@ -1,10 +1,38 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './buy-ticket.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import eds from '../../services/event-data-service/event-data-service';
+import Event from '../../models/Event';
+import { Participant } from '../../models/Participant';
+import { useForm } from 'react-hook-form';
 
 interface BuyTicketProps {}
 
 const BuyTicket: FC<BuyTicketProps> = () => {
+  let { id } = useParams();
+  const [event, setEvent] = useState<Event>();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (participant: any) => {
+    const newParticipant: Participant = {
+      ...participant
+    }
+    
+    setEvent((prevEvent: any) => ({
+      ...prevEvent,
+      uczestnicy: [...prevEvent.uczestnicy, newParticipant]
+    }));
+
+    eds.putData(event)
+  };
+
+  useEffect(() => {
+    if (id) {
+      eds.getSingleData(parseInt(id)).then(({ event }) => { setEvent(event); });
+    }
+  }, [id]);
+
+  
   return (
     <div className={styles.BuyTicket}>
       <div className={styles.mainContainer}>
@@ -15,18 +43,19 @@ const BuyTicket: FC<BuyTicketProps> = () => {
             </svg>
           </button>
         </Link>
-        <div className={styles.formContainer}>
+        <div className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <form className={styles.buyTicketFormContainer} >
             <label >Formularz kupowania biletu na:</label>
-            <input className={styles.formInput} name="imie" type="text" placeholder="Imię"/>
+            <label><b>{event?._nazwa}</b></label>
+            <input className={styles.formInput} {...register("imie", { required: true, maxLength: 30 })} type="text" placeholder="Imię"/>
 
-            <input className={styles.formInput} name="nazwisko" type="text" placeholder="Nazwisko"/>
+            <input className={styles.formInput} {...register("nazwisko", { required: true, maxLength: 30 })} type="text" placeholder="Nazwisko"/>
 
-            <input className={styles.formInput} name="data_urodzenia" type="text" placeholder="Data urodzenia"/>
+            <input className={styles.formInput} {...register("data_urodzenia", { required: true, maxLength: 30 })} type="text" placeholder="Data urodzenia"/>
 
-            <input className={styles.formInput} name="email" type="email" placeholder="E-mail"/>
+            <input className={styles.formInput} {...register("email", { required: true, maxLength: 30 })} type="email" placeholder="E-mail"/>
 
-            <input className={styles.formInput} name="nr_telefonu" type="number" placeholder="Numer telefonu"/>
+            <input className={styles.formInput} {...register("nr_telefonu", { required: true, maxLength: 30 })} type="number" placeholder="Numer telefonu"/>
 
             <button type="submit">Kup bilet</button>
           </form>
