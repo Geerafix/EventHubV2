@@ -1,11 +1,64 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './edit-event.module.css';
 import { Link, useParams } from 'react-router-dom';
+import eds from '../../services/event-data-service/event-data-service';
+import { Plan } from '../../models/Plan';
+import { Participant } from '../../models/Participant';
+import { useForm } from 'react-hook-form';
 
 interface EditEventProps {}
 
+type AddEventForm = {
+  id: number,
+  nazwa: string,
+  rodzaj: string,
+  organizator: string,
+  miejsce: string,
+  max_ilosc_osob: number,
+  data_wydarzenia: string,
+  cena_biletu: number,
+  plan: Plan[],
+  uczestnicy: Participant[]
+}
+
 const EditEvent: FC<EditEventProps> = () => {
+  const { register, setValue, handleSubmit, formState: { errors } } = useForm<AddEventForm>();
   let { id } = useParams();
+
+  const onSubmit = (event: any) => {
+    const newEvent: Event = {
+      id: event.id,
+      ...event,
+      plan: event.plan,
+      uczestnicy: event.uczestnicy
+    };
+    eds.putData(newEvent);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const response = await eds.getSingleData(parseInt(id));
+          const event = response.event;
+          setValue('id', event._id);
+          setValue('nazwa', event._nazwa);
+          setValue('rodzaj', event._rodzaj);
+          setValue('organizator', event._organizator);
+          setValue('miejsce', event._miejsce);
+          setValue('max_ilosc_osob', event._max_ilosc_osob);
+          setValue('data_wydarzenia', event._data_wydarzenia.toLocaleDateString());
+          setValue('cena_biletu', event._cena_biletu);
+          setValue('plan', event._plan);
+          setValue('uczestnicy', event._uczestnicy);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, [id, setValue]);
   
   return (
     <div className={styles.EditEvent}>
@@ -17,22 +70,22 @@ const EditEvent: FC<EditEventProps> = () => {
             </svg>
           </button>
         </Link>
-        <div className={styles.editFormContainer}>
+        <div className={styles.editFormContainer} onSubmit={handleSubmit(onSubmit)}>
           <form className={styles.editEventFormContainer}>
             <label>Formularz edycji wydarzenia:</label>
-            <input className={styles.formInput} name="nazwa" placeholder="Nazwa wydarzenia"/>
+            <input className={styles.formInput} {...register("nazwa", { required: true, maxLength: 30 })} placeholder="Nazwa wydarzenia"/>
 
-            <input className={styles.formInput} name="rodzaj" placeholder="Rodzaj wydarzenia"/>
+            <input className={styles.formInput} {...register("rodzaj", { required: true, maxLength: 30 })} placeholder="Rodzaj wydarzenia"/>
 
-            <input className={styles.formInput} name="organizator" placeholder="Organizator wydarzenia"/>
+            <input className={styles.formInput} {...register("organizator", { required: true, maxLength: 30 })} placeholder="Organizator wydarzenia"/>
 
-            <input className={styles.formInput} name="miejsce" placeholder="Miejsce wydarzenia"/>
+            <input className={styles.formInput} {...register("miejsce", { required: true, maxLength: 30 })} placeholder="Miejsce wydarzenia"/>
 
-            <input className={styles.formInput} name="max_ilosc_osob" type="number" placeholder="Maks. ilość osób"/>
+            <input className={styles.formInput} {...register("max_ilosc_osob", { required: true, max: 10000 })} type="number" placeholder="Maks. ilość osób"/>
 
-            <input className={styles.formInput} name="data_wydarzenia" type="text" placeholder="Data wydarzenia"/>
+            <input className={styles.formInput} {...register("data_wydarzenia", { required: true })} type="text" placeholder="Data wydarzenia"/>
 
-            <input className={styles.formInput} name="cena_biletu" type="number" placeholder="Cena biletu"/>
+            <input className={styles.formInput} {...register("cena_biletu", { required: true, min: 0, max: 1000 })} type="number" placeholder="Cena biletu"/>
 
             {/* <app-add-plan [eventPlan]="eventPlan"></app-add-plan> */}
 

@@ -79,6 +79,24 @@ const EventDataService = {
       throw error;
     }
   },
+
+  postData: async (newEvent: any) => {
+    try {
+      const res = await axios.post(`${apiUrl}/events`, newEvent);
+      return { event: res.data };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  putData: async (newEvent: any) => {
+    try {
+      const res = await axios.put(`${apiUrl}/events/${newEvent.id}`, newEvent);
+      return { event: res.data };
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default EventDataService;
