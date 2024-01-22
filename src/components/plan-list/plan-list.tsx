@@ -7,6 +7,7 @@ interface PlanListProps {
 }
 
 const PlanList: FC<PlanListProps> = ({eventPlan}) => {
+  console.log("Test", eventPlan);
   return (
     <div className={styles.planContainer}>
       <h3>Plan wydarzenia:</h3>

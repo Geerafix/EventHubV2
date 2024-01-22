@@ -10,7 +10,7 @@ const EventDataService = {
     try {
       const res = await axios.get(`${apiUrl}/events`);
       const events = res.data;
-      const json = events.map((event: any) => {
+      const getEvents = events.map((event: any) => {
         return new Event(
           event.id,
           event.nazwa,
@@ -38,7 +38,7 @@ const EventDataService = {
           })
         );
       });
-      return { events: json };
+      return { events: getEvents };
     } catch (error) {
       throw error;
     }
@@ -48,7 +48,7 @@ const EventDataService = {
     try {
       const res = await axios.get(`${apiUrl}/events/${id}`);
       const event = res.data;
-      const json = new Event(
+      const getEvent = new Event(
         event.id,
         event.nazwa,
         event.rodzaj,
@@ -74,7 +74,7 @@ const EventDataService = {
           );
         })
       );
-      return { event: json };
+      return { event: getEvent };
     } catch (error) {
       throw error;
     }
@@ -89,9 +89,18 @@ const EventDataService = {
     }
   },
 
-  putData: async (newEvent: any) => {
+  putData: async (editedEvent: any) => {
     try {
-      const res = await axios.put(`${apiUrl}/events/${newEvent.id}`, newEvent);
+      const res = await axios.put(`${apiUrl}/events/${editedEvent.id}`, editedEvent);
+      return { event: res.data };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  deleteData: async (eventId: number) => {
+    try {
+      const res = await axios.delete(`${apiUrl}/events/${eventId}`);
       return { event: res.data };
     } catch (error) {
       throw error;

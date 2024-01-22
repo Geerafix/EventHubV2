@@ -29,8 +29,8 @@ const EditEvent: FC<EditEventProps> = () => {
     const newEvent: Event = {
       id: event.id,
       ...event,
-      plan: event.plan,
-      uczestnicy: event.uczestnicy
+      ...event.plan,
+      ...event.uczestnicy
     };
     eds.putData(newEvent);
   };
