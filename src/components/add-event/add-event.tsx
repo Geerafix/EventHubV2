@@ -51,27 +51,36 @@ const AddEvent: FC<AddEventProps> = () => {
           <form className={styles.eventFormContainer}>
             <label>Formularz dodawania wydarzenia</label>
             <input className={styles.formInput} {...register("nazwa", { required: true, maxLength: 30 })} placeholder="Nazwa wydarzenia"/>
-            {errors.nazwa && errors.nazwa.type === 'required' && <span>To pole jest wymagane</span>}
-            {errors.nazwa && errors.nazwa.type === 'maxLength' && <span>Nazwa wydarzenia może mieć maks. 30 znaków</span>}
+            {errors.nazwa && errors.nazwa.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.nazwa && errors.nazwa.type === 'maxLength' && <span className={styles.formError}>Nazwa wydarzenia może mieć maks. 30 znaków</span>}
 
             <input className={styles.formInput} {...register("rodzaj", { required: true, maxLength: 30 })} placeholder="Rodzaj wydarzenia"/>
+            {errors.rodzaj && errors.rodzaj.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.rodzaj && errors.rodzaj.type === 'maxLength' && <span className={styles.formError}>Rodzaj wydarzenia może mieć maks. 30 znaków</span>}
 
             <input className={styles.formInput} {...register("organizator", { required: true, maxLength: 30 })} placeholder="Organizator wydarzenia"/>
+            {errors.organizator && errors.organizator.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.organizator && errors.organizator.type === 'minLength' && <span className={styles.formError}>Organizator wydarzenia może mieć maks. 30 znaków</span>}
 
             <input className={styles.formInput} {...register("miejsce", { required: true, maxLength: 30 })} placeholder="Miejsce wydarzenia"/>
+            {errors.miejsce && errors.miejsce.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.miejsce && errors.miejsce.type === 'maxLength' && <span className={styles.formError}>Miejsce wydarzenia może mieć maks. 30 znaków</span>}
 
             <input className={styles.formInput} {...register("max_ilosc_osob", { required: true, max: 10000 })} type="number" placeholder="Maks. ilość osób"/>
+            {errors.max_ilosc_osob && errors.max_ilosc_osob.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.max_ilosc_osob && errors.max_ilosc_osob.type === 'max' && <span className={styles.formError}>Wydarzenie może mieć maks. 10000 osób</span>}
 
             <input className={styles.formInput} {...register("data_wydarzenia", { required: true })} type="text" placeholder="Data wydarzenia"/>
+            {errors.data_wydarzenia && errors.data_wydarzenia.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.data_wydarzenia && errors.data_wydarzenia.type === 'maxLength' && <span className={styles.formError}>Data wydarzenia może mieć maks. 30 znaków</span>}
 
-            <input className={styles.formInput} {...register("cena_biletu", { required: true, min: 0, max: 1000 })} type="number" placeholder="Cena biletu"/>
+            <input className={styles.formInput} {...register("cena_biletu", { required: true, min: 0 })} type="number" placeholder="Cena biletu"/>
+            {errors.cena_biletu && errors.cena_biletu.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.cena_biletu && errors.cena_biletu.type === 'min' && <span className={styles.formError}>Cena biletu nie może być ujemna</span>}
 
             <AddPlan eventPlan={plan}></AddPlan>
 
-            <button type="submit">
-              Zatwierdź
-            </button>
-
+            <button type="submit">Zatwierdź</button>
           </form>
         </div>
       </div>
