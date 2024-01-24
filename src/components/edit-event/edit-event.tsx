@@ -1,10 +1,13 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './edit-event.module.css';
 import { Link, useParams } from 'react-router-dom';
 import eds from '../../services/event-data-service/event-data-service';
 import { Plan } from '../../models/Plan';
 import { Participant } from '../../models/Participant';
 import { useForm } from 'react-hook-form';
+import Back from '../back/back';
+import PlanListForm from '../plan-list-form/plan-list-form';
+import Event from '../../models/Event';
 
 interface EditEventProps {}
 
@@ -24,13 +27,14 @@ type AddEventForm = {
 const EditEvent: FC<EditEventProps> = () => {
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<AddEventForm>();
   let { id } = useParams();
+  const [event, setEvent] = useState<Event>();
 
   const onSubmit = (event: any) => {
     const newEvent: Event = {
       id: event.id,
       ...event,
-      ...event.plan,
-      ...event.uczestnicy
+      plan: event.plan,
+      uczestnicy: event.uczestnicy
     };
     eds.putData(newEvent);
   };
@@ -41,6 +45,7 @@ const EditEvent: FC<EditEventProps> = () => {
         if (id) {
           const response = await eds.getSingleData(parseInt(id));
           const event = response.event;
+          setEvent(event);
           setValue('id', event._id);
           setValue('nazwa', event._nazwa);
           setValue('rodzaj', event._rodzaj);
@@ -63,11 +68,12 @@ const EditEvent: FC<EditEventProps> = () => {
   return (
     <div className={styles.EditEvent}>
       <div className={styles.mainContainer}>
-        <Link to={`/szczegoly/${ id }`}>
+        {/* <Link to={`/szczegoly/${ id }`}>
           <button className={styles.backButton}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16"><path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg>
           </button>
-        </Link>
+        </Link> */}
+        <Back/>
         <div className={styles.editFormContainer} onSubmit={handleSubmit(onSubmit)}>
           <form className={styles.editEventFormContainer}>
             <label>Formularz edycji wydarzenia:</label>
@@ -85,7 +91,7 @@ const EditEvent: FC<EditEventProps> = () => {
 
             <input className={styles.formInput} {...register("cena_biletu", { required: true, min: 0, max: 1000 })} type="number" placeholder="Cena biletu"/>
 
-            {/* <app-add-plan [eventPlan]="eventPlan"></app-add-plan> */}
+            <PlanListForm eventPlan={event?._plan}></PlanListForm>
 
             <button type="submit">Zatwierdź</button>
           </form>

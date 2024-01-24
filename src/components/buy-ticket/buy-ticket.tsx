@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './buy-ticket.module.css';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import eds from '../../services/event-data-service/event-data-service';
 import Event from '../../models/Event';
 import { Participant } from '../../models/Participant';
 import { useForm } from 'react-hook-form';
+import Back from '../back/back';
 
 interface BuyTicketProps {}
 
@@ -17,12 +18,10 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     const newParticipant: Participant = {
       ...participant
     }
-    
     setEvent((prevEvent: any) => ({
       ...prevEvent,
       uczestnicy: [...prevEvent.uczestnicy, newParticipant]
     }));
-
     eds.putData(event)
   };
 
@@ -30,32 +29,36 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     if (id) {
       eds.getSingleData(parseInt(id)).then(({ event }) => { setEvent(event); });
     }
-  }, [id]);
+  }, [id])
 
-  
   return (
     <div className={styles.BuyTicket}>
       <div className={styles.mainContainer}>
-        <Link to="/">
-          <button className={styles.backButton}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-              <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-            </svg>
-          </button>
-        </Link>
+        <Back/>
         <div className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <form className={styles.buyTicketFormContainer} >
             <label >Formularz kupowania biletu na:</label>
             <label><b>{event?._nazwa}</b></label>
+
             <input className={styles.formInput} {...register("imie", { required: true, maxLength: 30 })} type="text" placeholder="Imię"/>
+            {errors.imie && errors.imie.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.imie && errors.imie.type === 'maxLength' && <span className={styles.formError}>Imię może mieć maks. 30 znaków</span>}
 
             <input className={styles.formInput} {...register("nazwisko", { required: true, maxLength: 30 })} type="text" placeholder="Nazwisko"/>
+            {errors.nazwisko && errors.nazwisko.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.nazwisko && errors.nazwisko.type === 'maxLength' && <span className={styles.formError}>Nazwisko może mieć maks. 30 znaków</span>}
 
-            <input className={styles.formInput} {...register("data_urodzenia", { required: true, maxLength: 30 })} type="text" placeholder="Data urodzenia"/>
+            <input className={styles.formInput} {...register("data_urodzenia", { required: true, maxLength: 30 })} type="date" placeholder="Data urodzenia"/>
+            {errors.data_urodzenia && errors.data_urodzenia.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {/* {errors.data_urodzenia && isAdult(errors.data_urodzenia) && <span className={styles.formError}>Musisz mieć ukończone 18 lat</span>} */}
 
-            <input className={styles.formInput} {...register("email", { required: true, maxLength: 30 })} type="email" placeholder="E-mail"/>
+            <input className={styles.formInput} {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/ })} type="text" placeholder="E-mail"/>
+            {errors.email && errors.email.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.email && errors.email.type === 'pattern' && <span className={styles.formError}>Nieprawidłowy e-mail</span>}
 
-            <input className={styles.formInput} {...register("nr_telefonu", { required: true, maxLength: 30 })} type="number" placeholder="Numer telefonu"/>
+            <input className={styles.formInput} {...register("nr_telefonu", { required: true, pattern: /^[0-9]{9}$/ })} type="number" placeholder="Numer telefonu"/>
+            {errors.nr_telefonu && errors.nr_telefonu.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
+            {errors.nr_telefonu && errors.nr_telefonu.type === 'pattern' && <span className={styles.formError}>Nieprawidłowy numer telefonu</span>}
 
             <button type="submit">Kup bilet</button>
           </form>

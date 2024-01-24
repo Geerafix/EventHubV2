@@ -67,3 +67,7 @@ button:hover {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.formError {
+    color: red;
+}

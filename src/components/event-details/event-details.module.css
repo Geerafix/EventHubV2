@@ -50,12 +50,6 @@ button:hover {
     color: red;
 }
 
-.backButton { 
-    width: 40px;
-    text-align: center;
-    align-items: center;
-}
-
 .link {
     text-decoration: none;
 }

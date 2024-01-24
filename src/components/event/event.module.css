@@ -64,7 +64,7 @@ button, input, select {
     border-radius: 20px;
     border-style: none;
     background-color: #99c7df;
-    box-shadow: 0px 0px 7px 0.01px rgb(146, 112, 108), inset 0 0 1px 0.01px #1038404e;
+    box-shadow: 0px 0px 7px 0.01px rgb(81, 111, 112), inset 0 0 1px 0.01px #1038404e;
     transition: 0.2s;
     outline: none;
     max-height: 40px;
