@@ -13,7 +13,6 @@ const BuyTicket: FC<BuyTicketProps> = () => {
   const navigate = useNavigate();
   const [ event, setEvent ] = useState<Event>();
   const [ dateInputType, setDateInputType ] = useState('text');
-
   const [ name, setName ] = useState('');
   const [ nameError, setNameError ] = useState('');
   const [ surname, setSurname ] = useState('');
@@ -24,7 +23,6 @@ const BuyTicket: FC<BuyTicketProps> = () => {
   const [ emailError, setEmailError ] = useState('');
   const [ phoneNr, setPhoneNr ] = useState('');
   const [ phoneNrError, setPhoneNrError ] = useState('');
-
   const [ isValid, setIsValid ] = useState(false);
 
   const buyTicket = (e: React.FormEvent<HTMLFormElement>) => {

@@ -13,7 +13,7 @@ interface EditEventProps {}
 const EditEvent: FC<EditEventProps> = () => {
   let { id } = useParams();
   const navigate = useNavigate();
-  const [ eventId, setEventId ] = useState<number>(0);
+  const [ event, setEvent ] = useState<Event>();
   const [ dateInputType, setDateInputType ] = useState('text');
   const [ name, setName ] = useState('');
   const [ nameError, setNameError ] = useState('');
@@ -35,14 +35,26 @@ const EditEvent: FC<EditEventProps> = () => {
 
   const editEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isValid) {
+    if (validateForm() && event) {
       const editedEvent: Event = new Event (
-        eventId, name, type, organizer, place, maxParticipants, new Date(date), price, plan, participants);
+        event._id, name, type, organizer, place, maxParticipants, new Date(date), price, plan, participants);
       eds.putData(editedEvent);
-      console.log(editedEvent);
       navigate('/');
     }
   };
+
+  const validateForm = () => {
+    setIsValid(
+      name.length > 0 && nameError === '' &&
+      type.length > 0 && typeError === '' &&
+      organizer.length > 0 && organizerError === '' &&
+      place.length > 0 && placeError === '' &&
+      maxParticipants > 0 && maxParticipantsError === '' &&
+      date.length > 0 && dateError === '' &&
+      price > 0 && priceError === ''
+    );
+    return isValid;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +62,7 @@ const EditEvent: FC<EditEventProps> = () => {
         if (id) {
           const response = await eds.getSingleData(parseInt(id));
           const event = response.event;
-          setEventId(response.event._id);
+          setEvent(response.event);
           setPlan(event._plan);
           setName(event._nazwa);
           setType(event._rodzaj);
@@ -68,15 +80,6 @@ const EditEvent: FC<EditEventProps> = () => {
     };
 
     fetchData();
-    setIsValid(
-      name.length > 0 && nameError === '' &&
-      type.length > 0 && typeError === '' &&
-      organizer.length > 0 && organizerError === '' &&
-      place.length > 0 && placeError === '' &&
-      maxParticipants > 0 && maxParticipantsError === '' &&
-      date.length > 0 && dateError === '' &&
-      price > 0 && priceError === ''
-    );
   }, [id]);
   
 
