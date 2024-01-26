@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './event-details.module.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Event from '../../models/Event';
 import PlanList from '../plan-list/plan-list';
 import eds from '../../services/event-data-service/event-data-service';
@@ -10,6 +10,7 @@ interface EventDetailsProps {}
 
 const EventDetails: FC<EventDetailsProps> = () => {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [event, setEvent] = useState<Event>();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
   const deleteEvent = () => {
     if (event) {
       eds.deleteData(event._id);
+      navigate('/');
     }
   };
 

@@ -7,19 +7,20 @@ interface PlanListProps {
 }
 
 const PlanList: FC<PlanListProps> = ({eventPlan}) => {
-  console.log("Test", eventPlan);
-  return (
+  return eventPlan?.length === 0 ? null : (
     <div className={styles.planContainer}>
       <h3>Plan wydarzenia:</h3>
-      <ol>
-        {
-          eventPlan?.map((planItem, index) => (
-            <li key={index}>
-              <span className={styles.planItemName}>{planItem._nazwa}</span>, {planItem._godz_rozpoczecia.toString()} do {planItem._godz_zakonczenia.toString()}
-            </li>
-          ))
-        }
-      </ol>
+      <ul>
+        {eventPlan?.map((planItem, index) => (
+          <li key={index}>
+            <div>
+              <span>{index + 1}. </span>
+              <span className={styles.planItemName}><b>{planItem._nazwa}</b></span>, od 
+              <b>{planItem._godz_rozpoczecia.toString()}</b> do <b>{planItem._godz_zakonczenia.toString()}</b>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

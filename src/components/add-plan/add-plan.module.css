@@ -6,6 +6,37 @@
 
 .createPlan {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     align-items: center;
+}
+
+.createPlanInputs {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.formError {
+    color: red;
+}
+
+.deleteButton {
+    background-color: rgb(231, 127, 127);
+    width: 40px;
+}
+
+.addButton {
+    width: 40px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  padding: 0;
 }

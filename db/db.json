@@ -7,18 +7,18 @@
       "organizator": "TV4",
       "miejsce": "Poznań, rynek",
       "max_ilosc_osob": 8000,
-      "data_wydarzenia": "Invalid Date",
+      "data_wydarzenia": "3.01.2024",
       "cena_biletu": 30,
       "plan": [
         {
-          "nazwa": "Modern Talking",
-          "godz_rozpoczecia": "18:00",
-          "godz_zakonczenia": "19:30"
+          "nazwa": "test",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:03"
         },
         {
-          "nazwa": "Bad Boys Blue",
-          "godz_rozpoczecia": "19:30",
-          "godz_zakonczenia": "20:30"
+          "nazwa": "nowywewew",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:03"
         }
       ],
       "uczestnicy": [

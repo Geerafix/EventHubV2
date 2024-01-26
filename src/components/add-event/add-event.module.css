@@ -1,11 +1,20 @@
+.AddEvent {
+    margin-bottom: 100px;
+}
+
 .formContainer {
     font-family: 'Century Gothic', serif;
     justify-content: center;
     align-items: center;
-}
-  
-.AddEvent {
-    margin-bottom: 100px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    color: #14424b;
+    border-color: #bfd0b0;
+    box-shadow: 0px 0px 7px 0.01px #4b7483, inset 0 0 20px 1px #ccd7c0;
+    padding: 20px;
+    margin-block: 20px;
+    background-color: #d7dfd0;
 }
   
 .eventFormContainer {
@@ -15,18 +24,9 @@
   align-items: center;
   gap: 17px;
   text-align: left;
-  border-width: 3px;
-  border-style: solid;
-  border-radius: 20px;
-  color: #14424b;
-  border-color: #bfd0b0;
-  box-shadow: 0px 0px 7px 0.01px #4b7483, inset 0 0 20px 1px #ccd7c0;
-  padding: 20px;
-  margin-block: 20px;
-  background-color: #d7dfd0;
 }
 
-.eventFormContainer > input:nth-child(7), :nth-child(8) {
+.eventFormContainer > input:nth-child(7) {
     cursor: pointer;
 }
 

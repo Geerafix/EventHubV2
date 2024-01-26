@@ -1,20 +1,11 @@
-.editFormContainer {
-    font-family: 'Century Gothic', serif;
-    justify-content: center;
-    align-items: center;
-}
-
 .editEvent {
     margin-bottom: 100px;
 }
 
-.editEventFormContainer {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.formContainer {
+    font-family: 'Century Gothic', serif;
+    justify-content: center;
     align-items: center;
-    gap: 17px;
-    text-align: left;
     border-width: 3px;
     border-style: solid;
     border-radius: 20px;
@@ -25,9 +16,17 @@
     margin-block: 20px;
     background-color: #d7dfd0;
 }
+  
+.eventFormContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 17px;
+  text-align: left;
+}
 
-#event-form-container > input:nth-child(7),
-:nth-child(8) {
+.eventFormContainer > input:nth-child(7), :nth-child(8) {
     cursor: pointer;
 }
 

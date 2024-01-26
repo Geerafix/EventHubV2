@@ -18,10 +18,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     const newParticipant: Participant = {
       ...participant
     }
-    setEvent((prevEvent: any) => ({
-      ...prevEvent,
-      uczestnicy: [...prevEvent.uczestnicy, newParticipant]
-    }));
+    setEvent((prevEvent: any) => ({...prevEvent, uczestnicy: [...prevEvent.uczestnicy, newParticipant]}));
     eds.putData(event)
   };
 
@@ -30,6 +27,11 @@ const BuyTicket: FC<BuyTicketProps> = () => {
       eds.getSingleData(parseInt(id)).then(({ event }) => { setEvent(event); });
     }
   }, [id])
+
+  const isAdult = (birthDate: any) => {
+    let diff = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
+    return (new Date(birthDate) >= diff) ? true : false;
+  }
 
   return (
     <div className={styles.BuyTicket}>
@@ -48,9 +50,9 @@ const BuyTicket: FC<BuyTicketProps> = () => {
             {errors.nazwisko && errors.nazwisko.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
             {errors.nazwisko && errors.nazwisko.type === 'maxLength' && <span className={styles.formError}>Nazwisko może mieć maks. 30 znaków</span>}
 
-            <input className={styles.formInput} {...register("data_urodzenia", { required: true, maxLength: 30 })} type="date" placeholder="Data urodzenia"/>
+            <input className={styles.formInput} {...register("data_urodzenia", { required: true })} type="date" placeholder="Data urodzenia"/>
             {errors.data_urodzenia && errors.data_urodzenia.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
-            {/* {errors.data_urodzenia && isAdult(errors.data_urodzenia) && <span className={styles.formError}>Musisz mieć ukończone 18 lat</span>} */}
+            {errors.data_urodzenia && isAdult(errors.data_urodzenia) && <span className={styles.formError}>Musisz mieć ukończone 18 lat</span>}
 
             <input className={styles.formInput} {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/ })} type="text" placeholder="E-mail"/>
             {errors.email && errors.email.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
