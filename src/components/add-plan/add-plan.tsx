@@ -1,7 +1,6 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import styles from './add-plan.module.css';
 import { Plan } from '../../models/Plan';
-import { useForm } from 'react-hook-form';
 import { XLg, PlusLg } from 'react-bootstrap-icons';
 
 interface AddPlanProps {
@@ -9,46 +8,72 @@ interface AddPlanProps {
   setPlan: Dispatch<SetStateAction<Plan[]>>;
 }
 
-type AddPlanForm = {
-  nazwa: string,
-  godz_rozpoczecia: Date | string,
-  godz_zakonczenia: Date | string
-}
-
 const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<AddPlanForm>();
   const [ startTimeType, setStartTimeType ] = useState('text');
   const [ endTimeType, setEndTimeType ] = useState('text');
+  const [ name, setName ] = useState('');
+  const [ nameError, setNameError ] = useState('');
+  const [ startHour, setStartHour ] = useState('');
+  const [ startHourError, setStartHourError ] = useState('');
+  const [ endHour, setEndHour ] = useState('');
+  const [ endHourError, setEndHourError ] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
-  const onSubmit = (plan: any) => {
-    const newPlan = new Plan(plan.nazwa, plan.godz_rozpoczecia, plan.godz_zakonczenia);
-    setPlan((prevPlan: Plan[]) => [...prevPlan, newPlan]);
+  const addPlan = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isValid) {
+      const newPlan = new Plan(name, startHour, endHour);
+      setPlan((prevPlan: Plan[]) => [...prevPlan, newPlan]);
+    }
   };
 
   const deletePlan = (index: number) => {
     setPlan((prevPlan: Plan[]) => prevPlan.filter((_, eventIndex: number) => eventIndex !== index ));
   };
 
+  useEffect(() => {
+    setIsValid(name.length > 0 && startHour.length > 0 && endHour.length > 0 &&
+      nameError === '' && startHourError === '' && endHourError === '');
+  }, [name, startHour, endHour, nameError, startHourError, endHourError]);
+
+  const nameInputChange = (name: any) => {
+    const value = name.target.value;
+    setName(value); 
+    if(value.length === 0) setNameError('Nazwa jest wymagana');
+    else if (value.length > 30) setNameError('Nazwa nie może przekraczać 30 znaków');
+    else setNameError('');
+  }
+
+  const startHourInputChange = (startHour: any) => {
+    const value = startHour.target.value;
+    setStartHour(value); 
+    if(value.length === 0) setStartHourError('Godzina rozpoczęcia jest wymagana');
+
+    else setStartHourError('');
+  }
+
+  const endHourInputChange = (endHour: any) => {
+    const value = endHour.target.value;
+    setEndHour(value); 
+    if(value.length === 0) setEndHourError('Godzina zakończenia jest wymagana');
+    if (value <= startHour) setEndHourError('Godzina zakończenia nie może być wcześniejsza niż rozpoczęcia');
+    else setEndHourError('');
+  }
+
   return (
-    <div className={styles.AddPlan} onSubmit={handleSubmit(onSubmit)}>
-      <form className={styles.createPlan}>
-        <div className={styles.createPlanInputs}>
+    <div className={styles.AddPlan}>
+      <div className={styles.createPlan}>
+        <form className={styles.createPlanInputs} onSubmit={(e) => addPlan(e)}>
           <label>Utwórz plan: </label>
-          <input className={styles.formInput} type="text" {...register("nazwa", { required: true, maxLength: 30 })} placeholder="Nazwa planu"/>
-
-          <input className={styles.formInput} {...register("godz_rozpoczecia", { required: true, maxLength: 30 })} placeholder="Godzina rozp." type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
-          
-          <input className={styles.formInput} {...register("godz_zakonczenia", { required: true })} placeholder="Godzina zak." type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
-
+          <input className={styles.formInput} type="text" placeholder="Nazwa planu" value={name} onChange={nameInputChange}/>
+          <input className={styles.formInput} placeholder="Godzina rozp." value={startHour} onChange={startHourInputChange} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
+          <input className={styles.formInput} placeholder="Godzina zak." value={endHour} onChange={endHourInputChange} type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
           <button type="submit" className={styles.addButton}><PlusLg/></button>
-        </div>
-
-        {errors.nazwa && errors.nazwa.type === 'required' && <span className={styles.formError}>Nazwa planu jest wymagana</span>}
-        {errors.nazwa && errors.nazwa.type === 'maxLength' && <span className={styles.formError}>Nazwa planu może mieć maks. 30 znaków</span>}
-        {errors.godz_rozpoczecia && errors.godz_rozpoczecia.type === 'required' && <span className={styles.formError}>Godzina rozpoczęcia jest wymagana</span>}
-        {errors.godz_zakonczenia && errors.godz_zakonczenia.type === 'required' && <span className={styles.formError}>Godzina zakończenia jest wymagana</span>}
-      </form>
-
+        </form>
+        {nameError && <span className={styles.formError}>{nameError}</span>}
+        {startHourError && <span className={styles.formError}>{startHourError}</span>}
+        {endHourError && <span className={styles.formError}>{endHourError}</span>}
+      </div>
       <ul>
         {plan.map((planItem, index) => (
           <li key={index}>

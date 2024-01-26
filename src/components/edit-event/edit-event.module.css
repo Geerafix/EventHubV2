@@ -62,3 +62,7 @@ button:hover {
 .backButton {
     width: 40px;
 }
+
+.formError {
+    color: red;
+}

@@ -10,7 +10,7 @@ const EventDataService = {
     try {
       const res = await axios.get(`${apiUrl}/events`);
       const events = res.data;
-      const getEvents = events.map((event: any) => {
+      let getEvents = events.map((event: any) => {
         return new Event(
           event.id,
           event.nazwa,
@@ -31,13 +31,17 @@ const EventDataService = {
             return new Participant(
               participant.imie,
               participant.nazwisko,
-              participant.wiek,
+              participant.data_urodzenia,
               participant.email,
               participant.nr_telefonu
             );
           })
         );
       });
+
+      getEvents = getEvents.filter((event: any) => { return new Date(event.data_wydarzenia) >= new Date(); });
+      getEvents.sort((a: any, b: any) => a._data_wydarzenia.getTime() - b._data_wydarzenia.getTime());
+
       return { events: getEvents };
     } catch (error) {
       throw error;
@@ -68,7 +72,7 @@ const EventDataService = {
           return new Participant(
             participant.imie,
             participant.nazwisko,
-            participant.wiek,
+            participant.data_urodzenia,
             participant.email,
             participant.nr_telefonu
           );

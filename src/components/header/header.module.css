@@ -1,0 +1,24 @@
+.header {
+    text-align: center;
+    font-size: 70px;
+    background-color: #334e6b;
+    box-shadow: inset 0px -5px 8px -6px #023331;
+    text-shadow: 0px 0px 20px #02363375;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+  
+.headerInfo  {
+    font-family: "Century Gothic", serif;
+    font-weight: bold;
+    font-size: 75px;
+    color: #cde8f7;
+    padding: 10px;
+    margin-block-start: -15px;
+    margin-block-end: -10px;
+    user-select: none;
+}
+  
+  

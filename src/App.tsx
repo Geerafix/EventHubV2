@@ -6,13 +6,13 @@ import EventDetails from './components/event-details/event-details';
 import BuyTicket from './components/buy-ticket/buy-ticket';
 import AddEvent from './components/add-event/add-event';
 import EditEvent from './components/edit-event/edit-event';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <p>EventHub</p>
-      </header>
+      <Header/>
       <Router>
         <Routes>
           <Route path="/" element={<EventComponent/>} />
@@ -22,6 +22,7 @@ function App() {
           <Route path="/edytuj/:id" element={<EditEvent/>} />
         </Routes>
       </Router>
+      <Footer/>
     </div>
   );
 }

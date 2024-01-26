@@ -2,7 +2,7 @@ export class Participant {
     constructor(
       private imie: string,
       private nazwisko: string,
-      private wiek: number,
+      private data_urodzenia: Date,
       private email: string,
       private nr_telefonu: number
     ) {}
@@ -23,12 +23,12 @@ export class Participant {
       this.nazwisko = value;
     }
   
-    get _wiek(): number {
-      return this.wiek;
+    get _data_urodzenia(): Date {
+      return this.data_urodzenia;
     }
   
-    set _wiek(value: number) {
-      this.wiek = value;
+    set _data_urodzenia(value: Date) {
+      this.data_urodzenia = value;
     }
   
     get _email(): string | string {

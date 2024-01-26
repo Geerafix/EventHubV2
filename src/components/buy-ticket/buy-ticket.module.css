@@ -23,6 +23,7 @@
     padding: 20px;
     margin-block: 20px;
     background-color: #d7dfd0;
+    width: 500px;
 }
 
 main > button:nth-child(1) {
