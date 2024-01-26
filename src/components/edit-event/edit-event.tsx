@@ -27,8 +27,8 @@ type AddEventForm = {
 const EditEvent: FC<EditEventProps> = () => {
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<AddEventForm>();
   let { id } = useParams();
-  const [plan, setPlan] = useState<Plan[]>([]);
-  const [dateInputType, setDateInputType] = useState('text');
+  const [ plan, setPlan ] = useState<Plan[]>([]);
+  const [ dateInputType, setDateInputType ] = useState('text');
 
   const onSubmit = (event: any) => {
     const newEvent: Event = {

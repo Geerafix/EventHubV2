@@ -10,8 +10,8 @@ interface EventDetailsProps {}
 
 const EventDetails: FC<EventDetailsProps> = () => {
   let { id } = useParams();
+  const [ event, setEvent ] = useState<Event>();
   const navigate = useNavigate();
-  const [event, setEvent] = useState<Event>();
 
   useEffect(() => {
     if (id) {
@@ -44,7 +44,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
           <div className={styles.interact}>
             <Link to={`/kup-bilet/${ event?._id }`} className={styles.link}>Kup bilet</Link>
             <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj</Link>
-            <a onClick={deleteEvent} className={`${styles.link} ${styles.deleteButton}`}>Usuń</a>
+            <span onClick={deleteEvent} className={`${styles.link} ${styles.deleteButton}`}>Usuń</span>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import eds from '../../services/event-data-service/event-data-service';
 import Event from '../../models/Event';
 import { Participant } from '../../models/Participant';
 import Back from '../back/back';
+import { useNavigate } from 'react-router-dom';
 
 interface AddEventProps {}
 
@@ -25,8 +26,9 @@ type AddEventForm = {
 
 const AddEvent: FC<AddEventProps> = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<AddEventForm>();
-  const [plan, setPlan] = useState<Plan[]>([]);
-  const [dateInputType, setDateInputType] = useState('text');
+  const [ plan, setPlan ] = useState<Plan[]>([]);
+  const [ dateInputType, setDateInputType ] = useState('text');
+  const navigate = useNavigate();
 
   const onSubmit = (event: any) => {
     const newEvent: Event = {
@@ -35,6 +37,7 @@ const AddEvent: FC<AddEventProps> = () => {
       uczestnicy: []
     };
     eds.postData(newEvent);
+    navigate('/');
   };
 
   return (

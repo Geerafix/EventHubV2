@@ -151,3 +151,7 @@ select:hover {
 .link {
     text-decoration: none;
 }
+
+.handleBtn {
+    width: 40px;
+}

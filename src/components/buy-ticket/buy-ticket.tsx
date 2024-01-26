@@ -11,8 +11,9 @@ interface BuyTicketProps {}
 
 const BuyTicket: FC<BuyTicketProps> = () => {
   let { id } = useParams();
-  const [event, setEvent] = useState<Event>();
+  const [ event, setEvent ] = useState<Event>();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [ dateInputType, setDateInputType ] = useState('text');
 
   const onSubmit = (participant: any) => {
     const newParticipant: Participant = {
@@ -50,7 +51,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
             {errors.nazwisko && errors.nazwisko.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
             {errors.nazwisko && errors.nazwisko.type === 'maxLength' && <span className={styles.formError}>Nazwisko może mieć maks. 30 znaków</span>}
 
-            <input className={styles.formInput} {...register("data_urodzenia", { required: true })} type="date" placeholder="Data urodzenia"/>
+            <input className={styles.formInput} {...register("data_urodzenia", { required: true })} placeholder="Data urodzenia" type={dateInputType} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
             {errors.data_urodzenia && errors.data_urodzenia.type === 'required' && <span className={styles.formError}>To pole jest wymagane</span>}
             {errors.data_urodzenia && isAdult(errors.data_urodzenia) && <span className={styles.formError}>Musisz mieć ukończone 18 lat</span>}
 
