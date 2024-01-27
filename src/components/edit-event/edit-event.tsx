@@ -53,6 +53,8 @@ const EditEvent: FC<EditEventProps> = () => {
         event._id, name, type, organizer, place, maxParticipants, new Date(date), price, plan, participants);
       eds.putData(editedEvent);
       navigate(`/szczegoly/${id}`);
+    } else {
+      alert("Uzupełnij lub popraw dane w formularzu!");
     }
   };
 

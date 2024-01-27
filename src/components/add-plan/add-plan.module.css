@@ -22,11 +22,6 @@
     color: red;
 }
 
-.deleteButton {
-    background-color: rgb(231, 127, 127);
-    width: 40px;
-}
-
 .addButton {
     width: 40px;
 }

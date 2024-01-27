@@ -9,6 +9,7 @@ interface EventProps {}
 
 const EventComponent: FC<EventProps> = () => {
   const [ eventList, setEventList ] = useState<Event[]>([]);
+  const [ eventsCount, setEventsCount ] = useState<number>();
   const [ search, setSearch ] = useState<string>('');
   const [ filterBy, setFilterBy ] = useState<string>('nazwa');
   const [ startDate, setStartDate ] = useState<string>('');
@@ -17,8 +18,10 @@ const EventComponent: FC<EventProps> = () => {
   const [ endDateType, setEndDateType ] = useState<string>('text');
 
   useEffect(() => {
-    eds.getData().then(({ events }) => { setEventList(events); });
-  }, []);
+    if (search === '' && filterBy === 'nazwa' && startDate === '' && endDate === '') {
+      eds.getData().then(({ events }) => { setEventList(events); });
+    }
+  }, [endDate, filterBy, search, startDate]);
 
   const clearFilter = () => {
     setSearch('');
@@ -46,6 +49,7 @@ const EventComponent: FC<EventProps> = () => {
       })
     }
     setEventList(filteredEvents);
+    setEventsCount(filteredEvents.length);
   }
 
   return (
@@ -62,12 +66,12 @@ const EventComponent: FC<EventProps> = () => {
             <input className={styles.date} placeholder="Data początk." type={startDateType} value={startDate} onChange={(el) => setStartDate(el.target.value)} onFocus={() => setStartDateType('date')} onBlur={() => setStartDateType('text')}/>
             <input className={styles.date} placeholder="Data końcowa" type={endDateType} value={endDate} onChange={(el) => setEndDate(el.target.value)} onFocus={() => setEndDateType('date')} onBlur={() => setEndDateType('text')}/>
             <button className={styles.handleBtn} onClick={() => handleFilter()} hidden={!search && !startDate && !endDate && filterBy === 'nazwa'}><Search/></button>
-            <button className={styles.handleBtn} onClick={() => clearFilter()} hidden={!search && !startDate && !endDate && filterBy === 'nazwa'}><EraserFill/></button>
+            <button className={styles.handleBtn} onClick={() => clearFilter()} hidden={eventsCount !== eventList.length}><EraserFill/></button>
           </div>
           <Link to="/dodaj-wydarzenie">
             <button className={styles.addEventButton}><PlusLg/></button>
           </Link>
-        </div>
+        </div> 
         {eventList.map((event, i) => (
           <div key = { i } className={styles.eventData}>
             <h2 className={styles.title}>{event._nazwa}</h2>

@@ -47,6 +47,8 @@ const AddEvent: FC<AddEventProps> = () => {
       const newEvent: Event = new Event (0, name, type, organizer, place, maxParticipants, new Date(date), price, plan, []);
       eds.postData(newEvent);
       navigate('/');
+    } else {
+      alert("Uzupełnij lub popraw dane w formularzu!");
     }
   };
 

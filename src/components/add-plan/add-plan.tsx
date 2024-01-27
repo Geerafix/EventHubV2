@@ -26,6 +26,8 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
     if (isValid) {
       const newPlan = new Plan(name, startHour, endHour);
       addPlan(newPlan);
+    } else {
+      alert("Uzupełnij lub popraw dane w formularzu planu!");
     }
   };
 
@@ -48,15 +50,17 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
   const startHourInputChange = (startHour: string) => {
     setStartHour(startHour); 
     if(startHour.length === 0) setStartHourError('Godzina rozpoczęcia jest wymagana');
-
     else setStartHourError('');
   }
 
   const endHourInputChange = (endHour: string) => {
     setEndHour(endHour); 
-    if(endHour.length === 0) setEndHourError('Godzina zakończenia jest wymagana');
-    if (endHour <= startHour) setEndHourError('Godzina zakończenia nie może być wcześniejsza niż rozpoczęcia');
-    else setEndHourError('');
+    if(endHour.length === 0) {
+      setEndHourError('Godzina zakończenia jest wymagana');
+    } else {
+      if (endHour <= startHour) setEndHourError('Godzina zakończenia nie może być wcześniejsza niż rozpoczęcia');
+      else setEndHourError('');
+    }
   }
 
   return (

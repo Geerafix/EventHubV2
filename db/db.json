@@ -2,221 +2,74 @@
   "events": [
     {
       "id": 1,
-      "nazwa": "Sylwester z Czwórką",
-      "rodzaj": "Koncert",
-      "organizator": "TV4",
-      "miejsce": "Poznań, rynek",
-      "max_ilosc_osob": 8000,
-      "data_wydarzenia": "3.01.2024",
-      "cena_biletu": 30,
+      "nazwa": "Wydarzenie 1",
+      "rodzaj": "Rodzaj 1",
+      "organizator": "Organizator 1",
+      "miejsce": "Miejsce 1",
+      "max_ilosc_osob": 10000,
+      "data_wydarzenia": "2024-02-11T00:00:00.000Z",
+      "cena_biletu": 100,
       "plan": [
         {
-          "nazwa": "test",
-          "godz_rozpoczecia": "12:03",
-          "godz_zakonczenia": "12:03"
+          "nazwa": "Plan 1",
+          "godz_rozpoczecia": "12:12",
+          "godz_zakonczenia": "12:23"
         },
         {
-          "nazwa": "nowywewew",
-          "godz_rozpoczecia": "12:03",
-          "godz_zakonczenia": "12:03"
+          "nazwa": "Plan 2",
+          "godz_rozpoczecia": "12:23",
+          "godz_zakonczenia": "12:59"
         }
       ],
-      "uczestnicy": [
-        {
-          "imie": "Jan",
-          "nazwisko": "Kowalski",
-          "wiek": "1999-08-29",
-          "email": "jan.kowalski@example.com",
-          "nr_telefonu": "123456789"
-        },
-        {
-          "imie": "Anna",
-          "nazwisko": "Nowak",
-          "wiek": "1995-02-03",
-          "email": "anna.nowak@example.com",
-          "nr_telefonu": "987654321"
-        },
-        {
-          "imie": "Asd",
-          "nazwisko": "Asd",
-          "wiek": "2002-03-12",
-          "email": "s@pw.pl",
-          "nr_telefonu": 123123343
-        },
-        {
-          "imie": "Imie",
-          "nazwisko": "Nazwisko",
-          "wiek": "2002-09-09",
-          "email": "lol@wp.pl",
-          "nr_telefonu": 123321123
-        },
-        {
-          "imie": "Lol",
-          "nazwisko": "Lol",
-          "wiek": "1999-01-17",
-          "email": "w@wp.pl",
-          "nr_telefonu": 222222222
-        }
-      ]
+      "uczestnicy": []
     },
     {
       "id": 2,
-      "nazwa": "Sylwester z Polsatem",
-      "rodzaj": "Koncert",
-      "organizator": "Polsat",
-      "miejsce": "Kobylnica, sala koncertowa",
-      "max_ilosc_osob": 9000,
-      "data_wydarzenia": "2023-12-30T00:00:00.000Z",
-      "cena_biletu": 60,
+      "nazwa": "Wydarzenie 2",
+      "rodzaj": "Rodzaj 4",
+      "organizator": "Organizator 2",
+      "miejsce": "Miejsce 2",
+      "max_ilosc_osob": 333,
+      "data_wydarzenia": "2024-01-31T00:00:00.000Z",
+      "cena_biletu": 5,
       "plan": [
         {
-          "nazwa": "Akcent",
-          "godz_rozpoczecia": "21:00",
-          "godz_zakonczenia": "21:30"
-        },
-        {
-          "nazwa": "Savage",
-          "godz_rozpoczecia": "19:30",
-          "godz_zakonczenia": "20:30"
+          "nazwa": "Plan 1",
+          "godz_rozpoczecia": "11:11",
+          "godz_zakonczenia": "11:59"
         }
       ],
-      "uczestnicy": [
-        {
-          "imie": "Jan",
-          "nazwisko": "Kowalski",
-          "wiek": "1999-08-29",
-          "email": "jan.kowalski@example.com",
-          "nr_telefonu": "123456789"
-        },
-        {
-          "imie": "Anna",
-          "nazwisko": "Nowak",
-          "wiek": "1995-02-03",
-          "email": "anna.nowak@example.com",
-          "nr_telefonu": "987654321"
-        }
-      ]
+      "uczestnicy": []
     },
     {
       "id": 3,
-      "nazwa": "Sylwester z TVP2",
-      "rodzaj": "Koncert",
-      "organizator": "Telewizja Polska",
-      "miejsce": "Zakopane, stadion",
-      "max_ilosc_osob": 10000,
-      "data_wydarzenia": "2023-12-30T00:00:00.000Z",
-      "cena_biletu": 50,
-      "plan": [
-        {
-          "nazwa": "Modern Talking",
-          "godz_rozpoczecia": "18:00",
-          "godz_zakonczenia": "19:30"
-        },
-        {
-          "nazwa": "Bad Boys Blue",
-          "godz_rozpoczecia": "19:30",
-          "godz_zakonczenia": "20:30"
-        }
-      ],
-      "uczestnicy": [
-        {
-          "imie": "Jan",
-          "nazwisko": "Kowalski",
-          "wiek": "1999-08-29",
-          "email": "jan.kowalski@example.com",
-          "nr_telefonu": "123456789"
-        },
-        {
-          "imie": "Anna",
-          "nazwisko": "Nowak",
-          "wiek": "1995-02-03",
-          "email": "anna.nowak@example.com",
-          "nr_telefonu": "987654321"
-        },
-        {
-          "imie": "Asd",
-          "nazwisko": "Asd",
-          "wiek": "2002-03-12",
-          "email": "s@pw.pl",
-          "nr_telefonu": 123123343
-        }
-      ]
+      "nazwa": "Wydarzenie 3",
+      "rodzaj": "Rodzaj 3",
+      "organizator": "Organizator 3",
+      "miejsce": "Miejsce 3",
+      "max_ilosc_osob": 120,
+      "data_wydarzenia": "2024-02-15T00:00:00.000Z",
+      "cena_biletu": 30,
+      "plan": [],
+      "uczestnicy": []
     },
     {
       "id": 4,
-      "nazwa": "Sylwester z Polsatem",
-      "rodzaj": "Koncert",
-      "organizator": "Polsat",
-      "miejsce": "Kobylnica, sala koncertowa",
-      "max_ilosc_osob": 10000,
-      "data_wydarzenia": "2022-12-30T00:00:00.000Z",
-      "cena_biletu": 50,
+      "nazwa": "Wydarzenie 4",
+      "rodzaj": "Rodzaj 2",
+      "organizator": "Organizator 2",
+      "miejsce": "Miejsce 3",
+      "max_ilosc_osob": 500,
+      "data_wydarzenia": "2024-10-10T00:00:00.000Z",
+      "cena_biletu": 60,
       "plan": [
         {
-          "nazwa": "Akcent",
-          "godz_rozpoczecia": "21:00",
-          "godz_zakonczenia": "21:30"
-        },
-        {
-          "nazwa": "Savage",
-          "godz_rozpoczecia": "19:30",
-          "godz_zakonczenia": "20:30"
+          "nazwa": "Plan 1",
+          "godz_rozpoczecia": "05:05",
+          "godz_zakonczenia": "09:00"
         }
       ],
-      "uczestnicy": [
-        {
-          "imie": "Jan",
-          "nazwisko": "Kowalski",
-          "wiek": "1999-08-29",
-          "email": "jan.kowalski@example.com",
-          "nr_telefonu": "123456789"
-        },
-        {
-          "imie": "Anna",
-          "nazwisko": "Nowak",
-          "wiek": "1995-02-03",
-          "email": "anna.nowak@example.com",
-          "nr_telefonu": "987654321"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "nazwa": "Urodziny u Haliny",
-      "rodzaj": "Urodziny",
-      "organizator": "Halina Tkaczyk",
-      "miejsce": "Dom Haliny Tkaczyk",
-      "max_ilosc_osob": 3,
-      "data_wydarzenia": "2024-01-21T00:00:00.000Z",
-      "cena_biletu": 0,
-      "plan": [
-        {
-          "nazwa": "Składanie życzeń",
-          "godz_rozpoczecia": "12:00",
-          "godz_zakonczenia": "13:00"
-        },
-        {
-          "nazwa": "Jedzenie tortu",
-          "godz_rozpoczecia": "13:00",
-          "godz_zakonczenia": "14:00"
-        }
-      ],
-      "uczestnicy": [
-        {
-          "imie": "Jan",
-          "nazwisko": "Kowalski",
-          "wiek": "1999-08-29",
-          "email": "jan.kowalski@example.com",
-          "nr_telefonu": "123456789"
-        },
-        {
-          "imie": "Anna",
-          "nazwisko": "Nowak",
-          "wiek": "1995-02-03",
-          "email": "anna.nowak@example.com",
-          "nr_telefonu": "987654321"
-        }
-      ]
+      "uczestnicy": []
     }
   ]
 }
