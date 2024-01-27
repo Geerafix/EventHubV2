@@ -1,13 +1,21 @@
 .formInput {
     width: 160px;
+    color: #424242;
+    box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
+}
+
+.formInput:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 .createPlan {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.5em;
     align-items: center;
 }
 
@@ -15,15 +23,19 @@
     text-align: center;
     align-items: center;
     display: flex;
-    gap: 10px;
+    margin-top: 1em;
+    gap: 1.5em;
 }
 
 .formError {
-    color: red;
+    margin-inline: auto;
+    color: #652F2F;
+    font-weight: 600;
 }
 
 .addButton {
-    width: 40px;
+    width: 100px;
+    background-color: rgb(172, 227, 172);
 }
 
 li {
@@ -34,4 +46,8 @@ li {
 
 ul {
   padding: 0;
+}
+
+.widthFix {
+    width: 120px;
 }

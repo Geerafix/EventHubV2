@@ -44,24 +44,32 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     }
     setIsValid(name.length > 0 && surname.length > 0 && birthdate.length > 0 && email.length > 0 && phoneNr !== null &&
       nameError === '' && surnameError === '' && birthdateError === '' && emailError === '' && !phoneNrError);
+      document.title = "Kup bilet";
   }, [id, name, surname, birthdate, email, phoneNr, nameError, surnameError, birthdateError, emailError, phoneNrError])
 
   const nameInputChange = (name: string) => {
     setName(name); 
-    if(name.length === 0) setNameError('Imię jest wymagane');
-    else if (name.length > 30) setNameError('Imię nie może przekraczać 30 znaków');
-    const nameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
-    if (!nameRegex.test(name)) setNameError('Imię musi być z wielkiej litery, bez cyfr i znaków specjalnych');
-    else setNameError('');
+    if(name.length === 0)  {
+      setNameError('Imię jest wymagane');
+    } else if (name.length > 30) {
+      setNameError('Imię nie może przekraczać 30 znaków');
+    } else {
+      const nameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
+      if (!nameRegex.test(name)) setNameError('Imię musi być z wielkiej litery, bez cyfr i znaków specjalnych');
+      else setNameError('');
+    }
   }
 
   const surnameInputChange = (surname: string) => {
     setSurname(surname); 
-    if(surname.length === 0) setSurnameError('Nazwisko jest wymagane');
-    else if (surname.length > 30) setSurnameError('Nazwisko nie może przekraczać 30 znaków');
-    const surnameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
-    if (!surnameRegex.test(surname)) setSurnameError('Nazwisko musi być z wielkiej litery, bez cyfr i znaków specjalnych');
-    else setSurnameError('');
+      if(surname.length === 0) {setSurnameError('Nazwisko jest wymagane'); 
+    } else if (surname.length > 30) {
+      setSurnameError('Nazwisko nie może przekraczać 30 znaków');
+    } else {
+      const surnameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
+      if (!surnameRegex.test(surname)) setSurnameError('Nazwisko musi być z wielkiej litery, bez cyfr i znaków specjalnych');
+      else setSurnameError('');
+    }
   }
 
   const birthdateInputChange = (birthdate: string) => {
@@ -103,7 +111,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.buyTicketFormContainer} onSubmit={(e) => buyTicket(e)}>
-            <label >Formularz kupowania biletu na:</label>
+            <label><b>Formularz kupowania biletu na:</b></label>
             <label><b>{event?._nazwa}</b></label>
             <input className={styles.formInput} type="text" placeholder="Imię" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
               {nameError && <span className={styles.formError}>{nameError}</span>}

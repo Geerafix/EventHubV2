@@ -9,23 +9,23 @@ interface EventProps {}
 
 const EventComponent: FC<EventProps> = () => {
   const [ eventList, setEventList ] = useState<Event[]>([]);
-  const [ eventsCount, setEventsCount ] = useState<number>();
   const [ search, setSearch ] = useState<string>('');
-  const [ filterBy, setFilterBy ] = useState<string>('nazwa');
+  const [ filterBy, setFilterBy ] = useState<string>('');
   const [ startDate, setStartDate ] = useState<string>('');
   const [ endDate, setEndDate ] = useState<string>('');
   const [ startDateType, setStartDateType ] = useState<string>('text');
   const [ endDateType, setEndDateType ] = useState<string>('text');
 
   useEffect(() => {
-    if (search === '' && filterBy === 'nazwa' && startDate === '' && endDate === '') {
+    if (search === '' && filterBy === '' && startDate === '' && endDate === '') {
       eds.getData().then(({ events }) => { setEventList(events); });
     }
+    document.title = "Strona główna";
   }, [endDate, filterBy, search, startDate]);
 
   const clearFilter = () => {
     setSearch('');
-    setFilterBy('nazwa');
+    setFilterBy('');
     setStartDate('');
     setEndDate('');
     eds.getData().then(({ events }) => { setEventList(events); });
@@ -49,7 +49,6 @@ const EventComponent: FC<EventProps> = () => {
       })
     }
     setEventList(filteredEvents);
-    setEventsCount(filteredEvents.length);
   }
 
   return (
@@ -58,28 +57,29 @@ const EventComponent: FC<EventProps> = () => {
         <div className={styles.controlContainer}>
           <div className={styles.searchContainer}>
             <input placeholder="Wyszukaj" className={styles.search} value={search} onChange={(el) => setSearch(el.target.value)}/>
-            <select value={filterBy} onChange={(el) => setFilterBy(el.target.value)}>
+            <select className={styles.optionC} onChange={(el) => setFilterBy(el.target.value)} value={filterBy}>
+              <option value="" disabled>Sortuj po</option>
               <option value="nazwa">Nazwa</option>
               <option value="rodzaj">Rodzaj</option>
               <option value="miejsce">Miejsce</option>
             </select>
             <input className={styles.date} placeholder="Data początk." type={startDateType} value={startDate} onChange={(el) => setStartDate(el.target.value)} onFocus={() => setStartDateType('date')} onBlur={() => setStartDateType('text')}/>
             <input className={styles.date} placeholder="Data końcowa" type={endDateType} value={endDate} onChange={(el) => setEndDate(el.target.value)} onFocus={() => setEndDateType('date')} onBlur={() => setEndDateType('text')}/>
-            <button className={styles.handleBtn} onClick={() => handleFilter()} hidden={!search && !startDate && !endDate && filterBy === 'nazwa'}><Search/></button>
-            <button className={styles.handleBtn} onClick={() => clearFilter()} hidden={eventsCount !== eventList.length}><EraserFill/></button>
+            <button className={styles.handleBtn} onClick={() => handleFilter()} hidden={!search && !startDate && !endDate && filterBy === ''}>Szukaj <Search/></button>
+            <button className={styles.handleBtn} onClick={() => clearFilter()}>Czyść <EraserFill/></button>
           </div>
           <Link to="/dodaj-wydarzenie">
-            <button className={styles.addEventButton}><PlusLg/></button>
+            <button className={styles.addButton}>Dodaj <PlusLg/></button>
           </Link>
         </div> 
         {eventList.map((event, i) => (
-          <div key = { i } className={styles.eventData}>
+          <div key = { i } className={styles.eventDataMain}>
             <h2 className={styles.title}>{event._nazwa}</h2>
             <label><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</label>
             <label><span className={styles.info}>Miejsce: </span>{event._miejsce}</label>
             <label><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toISOString().split('T')[0]}</label>
             <div className={styles.interact}>
-              <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły <InfoCircle/></Link>
+              <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły wydarzenia <InfoCircle/></Link>
               <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>
             </div>
           </div>

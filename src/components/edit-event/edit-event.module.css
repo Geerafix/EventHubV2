@@ -22,9 +22,13 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  gap: 17px;
+  gap: 1.5em;
   text-align: left;
   margin-bottom: 15px;
+}
+
+.eventFormContainer > :last-child {
+    background-color: rgb(172, 227, 172);
 }
 
 .eventFormContainer > input:nth-child(7), :nth-child(8) {

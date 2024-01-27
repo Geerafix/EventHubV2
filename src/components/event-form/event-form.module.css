@@ -1,9 +1,24 @@
 .formInput {
     width: 300px;
+    color: #424242;
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
 }
 
 .formError {
-    color: red;
+    margin-inline: auto;
+    color: #652F2F;
+    font-weight: 600;
+}
+
+.formInput:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.eventFContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
 }

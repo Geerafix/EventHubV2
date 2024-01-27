@@ -70,6 +70,7 @@ const AddEvent: FC<AddEventProps> = () => {
       date.length > 0 && dateError === '' &&
       price > 0 && priceError === ''
     );
+    document.title = "Dodawanie wydarzenia";
   }, [name, nameError, type, typeError, 
       organizer, organizerError, place, placeError, 
       maxParticipants, maxParticipantsError, 
@@ -81,7 +82,7 @@ const AddEvent: FC<AddEventProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
-            <label>Formularz dodawania wydarzenia</label>
+            <label><b>Formularz dodawania wydarzenia</b></label>
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>

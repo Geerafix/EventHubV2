@@ -15,13 +15,13 @@
     font-weight: bold;
     font-size: 20px;
     background-color: #334e6b;
-    color: #cde8f7;
+    color: aliceblue;
     padding: 4px;
     margin-block-start: -15px;
     margin-block-end: -10px;
     user-select: none;
     display: flex;
-    gap: 10px;
+    gap: 1em;
     justify-content: center;
     align-items: center;
     position: fixed;

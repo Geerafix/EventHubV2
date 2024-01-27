@@ -12,7 +12,7 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 17px;
+    gap: 1.5em;
     text-align: left;
     border-width: 3px;
     border-style: solid;
@@ -23,7 +23,11 @@
     padding: 20px;
     margin-block: 20px;
     background-color: #d7dfd0;
-    width: 500px;
+    width: 550px;
+}
+
+.buyTicketFormContainer > button:last-child {
+    background-color: rgb(172, 227, 172);
 }
 
 main > button:nth-child(1) {
@@ -58,8 +62,15 @@ button:hover {
   
 .formInput {
     width: 250px;
+    box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
+}
+
+.formInput:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 .mainContainer {
@@ -70,5 +81,7 @@ button:hover {
 }
 
 .formError {
-    color: red;
+    margin-inline: auto;
+    font-weight: 600;
+    color: #652F2F;
 }

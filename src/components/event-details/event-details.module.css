@@ -2,7 +2,7 @@
     font-family: 'Century Gothic', serif;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.5em;
     text-align: left;
     border-width: 3px;
     border-style: solid;
@@ -43,11 +43,22 @@ button:hover {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 1.5em;
 }
   
 .interact > :last-child {
-    color: red;
+    color: #652F2F;
+    font-size: 17px;
+    font-weight: 100;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0px;
+}
+
+.interact > :last-child:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 .link {

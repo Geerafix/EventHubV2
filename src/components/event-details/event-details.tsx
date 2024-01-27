@@ -18,6 +18,7 @@ const EventDetails: FC<EventDetailsProps> = () => {
     if (id) {
       eds.getSingleData(parseInt(id)).then(({ event }) => { setEvent(event); });
     }
+    document.title = "Szczegóły wydarzenia";
   }, [id]);
 
   const deleteEvent = () => {
@@ -44,8 +45,8 @@ const EventDetails: FC<EventDetailsProps> = () => {
           <PlanList eventPlan={event?._plan}></PlanList>
           <div className={styles.interact}>
             <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>
-            <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj <Pen/></Link>
-            <span onClick={deleteEvent} className={`${styles.link} ${styles.deleteButton}`}>Usuń <Trash/></span>
+            <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj wydarzenie <Pen/></Link>
+            <button onClick={deleteEvent} className={`${styles.link} ${styles.deleteButton}`}>Usuń wydarzenie <Trash/></button>
           </div>
         </div>
       </div>

@@ -22,9 +22,13 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  gap: 17px;
+  gap: 1.5em;
   text-align: left;
   margin-bottom: 15px;
+}
+
+.eventFormContainer > :last-child {
+    background-color: rgb(172, 227, 172);
 }
 
 .eventFormContainer > input:nth-child(7) {
@@ -59,11 +63,21 @@ button:hover {
 }
 
 .formInput {
+    color: #424242;
     width: 300px;
+    box-sizing: border-box;
     background-color: white;
-    box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
+    box-shadow: 0px 0px 7px 0.01px rgb(3, 3, 3); 
+}
+
+.formInput:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 .formError {
-    color: red;
+    margin-inline: auto;
+    color: #652F2F;
+    font-weight: 600;
 }

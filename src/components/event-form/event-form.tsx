@@ -82,7 +82,7 @@ const EventForm: FC<EventFormProps> = (props) => {
   }
 
   return (
-    <>
+    <div className={styles.eventFContainer}>
       <input className={styles.formInput} placeholder="Nazwa wydarzenia" value={props.name} onChange={(e) => nameInputChange(e.target.value)}/>
         {props.nameError && <span className={styles.formError}>{props.nameError}</span>}
 
@@ -103,7 +103,7 @@ const EventForm: FC<EventFormProps> = (props) => {
 
       <input className={styles.formInput} type="number" placeholder="Cena biletu" value={props.price} onChange={(e) => priceInputChange(Number(e.target.value))}/>
         {props.priceError && <span className={styles.formError}>{props.priceError}</span>}
-    </>
+    </div>
   );
 };
 

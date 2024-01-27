@@ -99,6 +99,7 @@ const EditEvent: FC<EditEventProps> = () => {
       date.length > 0 && dateError === '' &&
       price > 0 && priceError === ''
     );
+    document.title = "Edycja wydarzenia";
   }, [id, name, nameError, type, typeError, 
       organizer, organizerError, place, placeError, 
       maxParticipants, maxParticipantsError, 
@@ -110,7 +111,7 @@ const EditEvent: FC<EditEventProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
-            <label>Formularz edycji wydarzenia</label>
+            <label><b>Formularz edycji wydarzenia</b></label>
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>

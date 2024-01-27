@@ -1,7 +1,7 @@
-.eventData {
+.eventDataMain {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.5em;
     text-align: left;
     border-width: 3px;
     border-style: solid;
@@ -53,7 +53,7 @@ label {
 .searchContainer {
     display: flex;
     justify-content: space-between;
-    gap: 5px;
+    gap: 0.5em;
 }
 
 button, input, select {
@@ -63,7 +63,7 @@ button, input, select {
     padding: 10px;
     border-radius: 20px;
     border-style: none;
-    background-color: #99c7df;
+    background-color: #D0DEE7;
     box-shadow: 0px 0px 7px 0.01px rgb(81, 111, 112), inset 0 0 1px 0.01px #1038404e;
     transition: 0.2s;
     outline: none;
@@ -108,7 +108,8 @@ select:hover {
 }
 
 .date {
-    width: 100px;
+    box-sizing: border-box;
+    width: 130px;
 }
 
 .date:hover {
@@ -117,8 +118,31 @@ select:hover {
     box-shadow: 0px 0px 10px 0.05px rgb(88, 64, 61);
 }
 
+.date:focus {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
 .search {
-    width: 122px;
+    box-sizing: border-box;
+    width: 130px;
+}
+
+.search:focus {
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+}
+
+.optionC {
+    box-sizing: border-box;
+}
+
+.optionC:focus {
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
 }
 
 .clearBtn {
@@ -136,7 +160,7 @@ select:hover {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 1.5em;
 }
   
 .interact > :nth-child(1) {
@@ -152,6 +176,6 @@ select:hover {
     text-decoration: none;
 }
 
-.handleBtn {
-    width: 40px;
+.addButton {
+    margin-left: 0.5em;
 }

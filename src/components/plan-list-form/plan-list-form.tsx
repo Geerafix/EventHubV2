@@ -19,7 +19,7 @@ const PlanListForm: FC<PlanListFormProps> = ({plan, updateDeletePlan}) => {
             od <b>{planItem._godz_rozpoczecia.toString()}</b> 
             do <b>{planItem._godz_zakonczenia.toString()}</b>
           </div>
-          <button className={styles.deleteButton} onClick={() => updateDeletePlan(index)}><XLg/></button>
+          <button className={styles.deleteButton} onClick={() => updateDeletePlan(index)}>Usuń <XLg/></button>
         </li>
       ))}
     </ul>
