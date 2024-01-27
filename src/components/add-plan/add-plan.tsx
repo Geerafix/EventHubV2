@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './add-plan.module.css';
 import { Plan } from '../../models/Plan';
-import { XLg, PlusLg } from 'react-bootstrap-icons';
+import { PlusLg } from 'react-bootstrap-icons';
+import PlanListForm from '../plan-list-form/plan-list-form';
 
 interface AddPlanProps {
   plan: Plan[];
@@ -37,27 +38,24 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
       nameError === '' && startHourError === '' && endHourError === '');
   }, [name, startHour, endHour, nameError, startHourError, endHourError]);
 
-  const nameInputChange = (name: any) => {
-    const value = name.target.value;
-    setName(value); 
-    if(value.length === 0) setNameError('Nazwa planu jest wymagana');
-    else if (value.length > 30) setNameError('Nazwa planu nie może przekraczać 30 znaków');
+  const nameInputChange = (name: string) => {
+    setName(name); 
+    if(name.length === 0) setNameError('Nazwa planu jest wymagana');
+    else if (name.length > 30) setNameError('Nazwa planu nie może przekraczać 30 znaków');
     else setNameError('');
   }
 
-  const startHourInputChange = (startHour: any) => {
-    const value = startHour.target.value;
-    setStartHour(value); 
-    if(value.length === 0) setStartHourError('Godzina rozpoczęcia jest wymagana');
+  const startHourInputChange = (startHour: string) => {
+    setStartHour(startHour); 
+    if(startHour.length === 0) setStartHourError('Godzina rozpoczęcia jest wymagana');
 
     else setStartHourError('');
   }
 
-  const endHourInputChange = (endHour: any) => {
-    const value = endHour.target.value;
-    setEndHour(value); 
-    if(value.length === 0) setEndHourError('Godzina zakończenia jest wymagana');
-    if (value <= startHour) setEndHourError('Godzina zakończenia nie może być wcześniejsza niż rozpoczęcia');
+  const endHourInputChange = (endHour: string) => {
+    setEndHour(endHour); 
+    if(endHour.length === 0) setEndHourError('Godzina zakończenia jest wymagana');
+    if (endHour <= startHour) setEndHourError('Godzina zakończenia nie może być wcześniejsza niż rozpoczęcia');
     else setEndHourError('');
   }
 
@@ -66,28 +64,16 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
       <div className={styles.createPlan}>
         <form className={styles.createPlanInputs} onSubmit={(e) => updateAddPlan(e)}>
           <label>Utwórz plan: </label>
-          <input className={styles.formInput} type="text" placeholder="Nazwa planu" value={name} onChange={nameInputChange}/>
-          <input className={styles.formInput} placeholder="Godzina rozp." value={startHour} onChange={startHourInputChange} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
-          <input className={styles.formInput} placeholder="Godzina zak." value={endHour} onChange={endHourInputChange} type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
+          <input className={styles.formInput} type="text" placeholder="Nazwa planu" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
+          <input className={styles.formInput} placeholder="Godzina rozp." value={startHour} onChange={(e) => startHourInputChange(e.target.value)} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
+          <input className={styles.formInput} placeholder="Godzina zak." value={endHour} onChange={(e) => endHourInputChange(e.target.value)} type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
           <button type="submit" className={styles.addButton}><PlusLg/></button>
         </form>
         {nameError && <span className={styles.formError}>{nameError}</span>}
         {startHourError && <span className={styles.formError}>{startHourError}</span>}
         {endHourError && <span className={styles.formError}>{endHourError}</span>}
       </div>
-      <ul>
-        {plan.map((planItem, index) => (
-          <li key={index}>
-            <div>
-              <span>{index + 1}. </span>
-              <span className={styles.planItemName}><b>{planItem._nazwa}</b></span>, 
-              od <b>{planItem._godz_rozpoczecia.toString()}</b> 
-              do <b>{planItem._godz_zakonczenia.toString()}</b>
-            </div>
-            <button className={styles.deleteButton} onClick={() => updateDeletePlan(index)}><XLg/></button>
-          </li>
-        ))}
-      </ul>
+      <PlanListForm plan={plan} updateDeletePlan={updateDeletePlan}></PlanListForm>
     </div>
   );
 };

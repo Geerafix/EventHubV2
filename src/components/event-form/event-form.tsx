@@ -64,7 +64,7 @@ const EventForm: FC<EventFormProps> = (props) => {
     else props.setMaxParticipantsError('');
   }
 
-  const dateInputChange = (date: Date) => {
+  const dateInputChange = (date: string) => {
     props.setDate(date.toString()); 
     if(!date) props.setDateError('Data wydarzenia jest wymagana');
     if (new Date(date) < new Date()) props.setDateError('Data wydarzenia nie może być wcześniejsza niż dzisiejsza');
@@ -95,7 +95,7 @@ const EventForm: FC<EventFormProps> = (props) => {
       <input className={styles.formInput} type="number" placeholder="Maks. ilość osób" value={props.maxParticipants} onChange={(e) => maxParticipantsInputChange(Number(e.target.value))}/>
         {props.maxParticipantsError && <span className={styles.formError}>{props.maxParticipantsError}</span>}
 
-      <input className={styles.formInput} value={props.date} onChange={(e) => dateInputChange(new Date(e.target.value))} placeholder="Data wydarzenia" type={dateInputType} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
+      <input className={styles.formInput} value={props.date} onChange={(e) => dateInputChange(new Date(e.target.value).toISOString().split('T')[0])} placeholder="Data wydarzenia" type={dateInputType} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
         {props.dateError && <span className={styles.formError}>{props.dateError}</span>}
 
       <input className={styles.formInput} type="number" placeholder="Cena biletu" value={props.price} onChange={(e) => priceInputChange(Number(e.target.value))}/>

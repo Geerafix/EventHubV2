@@ -40,10 +40,10 @@ const EventDetails: FC<EventDetailsProps> = () => {
           <label><span className={styles.info}>Liczba uczestników : </span>{event?._uczestnicy.length}</label>
           <label><span className={styles.info}>Maks. ilość osób: </span>{event?._max_ilosc_osob}</label>
           <label><span className={styles.info}>Data wydarzenia: </span>{event?._data_wydarzenia.toISOString().split('T')[0]}</label>
-          <label><span className={styles.info}>Cena biletu: </span>{event?._cena_biletu}</label>
+          <label><span className={styles.info}>Cena biletu: </span>{event?._cena_biletu} zł</label>
           <PlanList eventPlan={event?._plan}></PlanList>
           <div className={styles.interact}>
-            <Link to={`/kup-bilet/${ event?._id }`} className={styles.link}>Kup bilet <Cart/></Link>
+            <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>
             <Link to={`/edytuj/${ event?._id }`} className={styles.link}>Edytuj <Pen/></Link>
             <span onClick={deleteEvent} className={`${styles.link} ${styles.deleteButton}`}>Usuń <Trash/></span>
           </div>

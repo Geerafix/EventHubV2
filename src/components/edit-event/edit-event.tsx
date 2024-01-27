@@ -52,7 +52,7 @@ const EditEvent: FC<EditEventProps> = () => {
       const editedEvent: Event = new Event (
         event._id, name, type, organizer, place, maxParticipants, new Date(date), price, plan, participants);
       eds.putData(editedEvent);
-      navigate('/');
+      navigate(`/szczegoly/${id}`);
     }
   };
 

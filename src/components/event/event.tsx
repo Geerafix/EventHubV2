@@ -76,7 +76,7 @@ const EventComponent: FC<EventProps> = () => {
             <label><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toISOString().split('T')[0]}</label>
             <div className={styles.interact}>
               <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły <InfoCircle/></Link>
-              <Link className={styles.link} to={`/kup-bilet/${ event._id }`}>Kup bilet <Cart/></Link>
+              <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>
             </div>
           </div>
         ))}
