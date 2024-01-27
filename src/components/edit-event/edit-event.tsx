@@ -7,6 +7,7 @@ import Back from '../back/back';
 import Event from '../../models/Event';
 import AddPlan from '../add-plan/add-plan';
 import { Participant } from '../../models/Participant';
+import EventForm from '../event-form/event-form';
 
 interface EditEventProps {}
 
@@ -14,24 +15,34 @@ const EditEvent: FC<EditEventProps> = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   const [ event, setEvent ] = useState<Event>();
-  const [ dateInputType, setDateInputType ] = useState('text');
-  const [ name, setName ] = useState('');
-  const [ nameError, setNameError ] = useState('');
-  const [ type, setType ] = useState('');
-  const [ typeError, setTypeError ] = useState('');
-  const [ organizer, setOrganizer ] = useState('');
-  const [ organizerError, setOrganizerError ] = useState('');
-  const [ place, setPlace] = useState('');
-  const [ placeError, setPlaceError] = useState('');
+  const [ name, setName ] = useState<string>('');
+  const [ nameError, setNameError ] = useState<string>('');
+  const [ type, setType ] = useState<string>('');
+  const [ typeError, setTypeError ] = useState<string>('');
+  const [ organizer, setOrganizer ] = useState<string>('');
+  const [ organizerError, setOrganizerError ] = useState<string>('');
+  const [ place, setPlace] = useState<string>('');
+  const [ placeError, setPlaceError] = useState<string>('');
   const [ maxParticipants, setMaxParticipants ] = useState<number>(0);
-  const [ maxParticipantsError, setMaxParticipantsError ] = useState('');
-  const [ date, setDate ] = useState('');
-  const [ dateError, setDateError ] = useState('');
+  const [ maxParticipantsError, setMaxParticipantsError ] = useState<string>('');
+  const [ date, setDate ] = useState<string>('');
+  const [ dateError, setDateError ] = useState<string>('');
   const [ price, setPrice ] = useState<number>(0);
-  const [ priceError, setPriceError ] = useState('');
+  const [ priceError, setPriceError ] = useState<string>('');
   const [ plan, setPlan ] = useState<Plan[]>([]);
   const [ participants, setParticipants ] = useState<Participant[]>([]);
-  const [ isValid, setIsValid ] = useState(false);
+  const [ isValid, setIsValid ] = useState<boolean>(false);
+
+  const formProps = {
+    name, setName, nameError, setNameError,
+    type, setType, typeError, setTypeError,
+    organizer, setOrganizer, organizerError, setOrganizerError,
+    place, setPlace, placeError, setPlaceError,
+    maxParticipants, setMaxParticipants, maxParticipantsError, setMaxParticipantsError,
+    date, setDate, dateError, setDateError,
+    price, setPrice, priceError, setPriceError,
+    plan, setPlan,
+  };
 
   const editEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,66 +89,8 @@ const EditEvent: FC<EditEventProps> = () => {
         console.error(err);
       }
     };
-
     fetchData();
   }, [id]);
-  
-
-  const nameInputChange = (name: any) => {
-    const value = name.target.value;
-    setName(value); 
-    if(value.length === 0) setNameError('Nazwa wydarzenia jest wymagana');
-    else if (value.length > 30) setNameError('Nazwa wydarzenia nie może przekraczać 30 znaków');
-    else setNameError('');
-  }
-
-  const typeInputChange = (type: any) => {
-    const value = type.target.value;
-    setType(value); 
-    if(value.length === 0) setTypeError('Rodzaj jest wymagany');
-    else if (value.length > 30) setTypeError('Rodzaj nie może przekraczać 30 znaków');
-    else setTypeError('');
-  }
-
-  const organizerInputChange = (organizer: any) => {
-    const value = organizer.target.value;
-    setOrganizer(value); 
-    if(value.length === 0) setOrganizerError('Organizator jest wymagany');
-    else if (value.length > 30) setOrganizerError('Organizator nie może przekraczać 30 znaków');
-    else setOrganizerError('');
-  }
-
-  const placeInputChange = (place: any) => {
-    const value = place.target.value;
-    setPlace(value); 
-    if(value.length === 0) setPlaceError('Miejsce wydarzenia jest wymagane');
-    else if (value.length > 30) setPlaceError('Miejsce wydarzenia nie może przekraczać 30 znaków');
-    else setPlaceError('');
-  }
-
-  const maxParticipantsInputChange = (maxParticipants: any) => {
-    const value = maxParticipants.target.value;
-    setMaxParticipants(value); 
-    if(value.length === 0) setMaxParticipantsError('Maksymalna ilość uczestników jest wymagana');
-    else if (value > 10000) setMaxParticipantsError('Maksymalna ilość uczestników to 10000');
-    else setMaxParticipantsError('');
-  }
-
-  const dateInputChange = (date: any) => {
-    const value = date.target.value;
-    setDate(value); 
-    if(value === '') setDateError('Data wydarzenia jest wymagana');
-    if (new Date(date) < new Date()) setDateError('Data wydarzenia nie może być wcześniejsza niż dzisiejsza');
-    else setDateError('');
-  }
-
-  const priceInputChange = (price: any) => {
-    const value = price.target.value;
-    setPrice(value); 
-    if(value === '') setPriceError('Cena biletu jest wymagana');
-    else if (value < 0) setPriceError('Cena biletu nie może być ujemna');
-    else setPriceError('');
-  }
   
   return (
     <div className={styles.EditEvent}>
@@ -145,21 +98,8 @@ const EditEvent: FC<EditEventProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.eventFormContainer} onSubmit={(e) => editEvent(e)}>
-            <label>Formularz dodawania wydarzenia</label>
-            <input className={styles.formInput} placeholder="Nazwa wydarzenia" value={name} onChange={nameInputChange}/>
-              {nameError && <span className={styles.formError}>{nameError}</span>}
-            <input className={styles.formInput} placeholder="Rodzaj wydarzenia" value={type} onChange={typeInputChange}/>
-              {typeError && <span className={styles.formError}>{typeError}</span>}
-            <input className={styles.formInput} placeholder="Organizator wydarzenia" value={organizer} onChange={organizerInputChange}/>
-              {organizerError && <span className={styles.formError}>{organizerError}</span>}
-            <input className={styles.formInput} placeholder="Miejsce wydarzenia" value={place} onChange={placeInputChange}/>
-              {placeError && <span className={styles.formError}>{placeError}</span>}
-            <input className={styles.formInput} type="number" placeholder="Maks. ilość osób" value={maxParticipants} onChange={maxParticipantsInputChange}/>
-              {maxParticipantsError && <span className={styles.formError}>{maxParticipantsError}</span>}
-            <input className={styles.formInput} type={dateInputType} value={date} onChange={dateInputChange} placeholder="Data wydarzenia" onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
-              {dateError && <span className={styles.formError}>{dateError}</span>}
-            <input className={styles.formInput} type="number" placeholder="Cena biletu" value={price} onChange={priceInputChange}/>
-              {priceError && <span className={styles.formError}>{priceError}</span>}
+            <label>Formularz edycji wydarzenia</label>
+            <EventForm {...formProps}/>
             <button type="submit">Zatwierdź</button>
           </form>
           <AddPlan plan={plan} setPlan={setPlan}></AddPlan>

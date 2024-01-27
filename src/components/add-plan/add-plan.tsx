@@ -39,8 +39,8 @@ const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
   const nameInputChange = (name: any) => {
     const value = name.target.value;
     setName(value); 
-    if(value.length === 0) setNameError('Nazwa jest wymagana');
-    else if (value.length > 30) setNameError('Nazwa nie może przekraczać 30 znaków');
+    if(value.length === 0) setNameError('Nazwa planu jest wymagana');
+    else if (value.length > 30) setNameError('Nazwa planu nie może przekraczać 30 znaków');
     else setNameError('');
   }
 

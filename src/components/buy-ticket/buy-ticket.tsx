@@ -12,23 +12,23 @@ const BuyTicket: FC<BuyTicketProps> = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   const [ event, setEvent ] = useState<Event>();
-  const [ dateInputType, setDateInputType ] = useState('text');
-  const [ name, setName ] = useState('');
-  const [ nameError, setNameError ] = useState('');
-  const [ surname, setSurname ] = useState('');
-  const [ surnameError, setSurnameError ] = useState('');
-  const [ birthdate, setBirthdate ] = useState('');
-  const [ birthdateError, setBirthdateError ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ emailError, setEmailError ] = useState('');
-  const [ phoneNr, setPhoneNr ] = useState('');
-  const [ phoneNrError, setPhoneNrError ] = useState('');
-  const [ isValid, setIsValid ] = useState(false);
+  const [ dateInputType, setDateInputType ] = useState<string>('text');
+  const [ name, setName ] = useState<string>('');
+  const [ nameError, setNameError ] = useState<string>('');
+  const [ surname, setSurname ] = useState<string>('');
+  const [ surnameError, setSurnameError ] = useState<string>('');
+  const [ birthdate, setBirthdate ] = useState<string>('');
+  const [ birthdateError, setBirthdateError ] = useState<string>('');
+  const [ email, setEmail ] = useState<string>('');
+  const [ emailError, setEmailError ] = useState<string>('');
+  const [ phoneNr, setPhoneNr ] = useState<number>();
+  const [ phoneNrError, setPhoneNrError ] = useState<string>('');
+  const [ isValid, setIsValid ] = useState<boolean>(false);
 
   const buyTicket = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isValid) {
-      const newParticipant: Participant = new Participant (name, surname, new Date(birthdate), email, parseInt(phoneNr))
+    if (isValid && phoneNr) {
+      const newParticipant: Participant = new Participant (name, surname, new Date(birthdate), email, phoneNr)
       event?.addParticipant(newParticipant);
       eds.putData(event);
       navigate('/'); 
@@ -39,36 +39,33 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     if (id) {
       eds.getSingleData(parseInt(id)).then(({ event }) => { setEvent(event); });
     }
-    setIsValid(name.length > 0 &&surname.length > 0 &&birthdate.length > 0 &&email.length > 0 &&phoneNr.length > 0 &&
-      nameError === '' && surnameError === '' && birthdateError === '' && emailError === '' && phoneNrError === '');
+    setIsValid(name.length > 0 && surname.length > 0 && birthdate.length > 0 && email.length > 0 && phoneNr !== null &&
+      nameError === '' && surnameError === '' && birthdateError === '' && emailError === '' && !phoneNrError);
   }, [id, name, surname, birthdate, email, phoneNr, nameError, surnameError, birthdateError, emailError, phoneNrError])
 
-  const nameInputChange = (name: any) => {
-    const value = name.target.value;
-    setName(value); 
-    if(value.length === 0) setNameError('Imię jest wymagane');
-    else if (value.length > 30) setNameError('Imię nie może przekraczać 30 znaków');
+  const nameInputChange = (name: string) => {
+    setName(name); 
+    if(name.length === 0) setNameError('Imię jest wymagane');
+    else if (name.length > 30) setNameError('Imię nie może przekraczać 30 znaków');
     const nameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
-    if (!nameRegex.test(value)) setNameError('Imię musi być z wielkiej litery, bez cyfr i bez znaków specjalnych');
+    if (!nameRegex.test(name)) setNameError('Imię musi być z wielkiej litery, bez cyfr i znaków specjalnych');
     else setNameError('');
   }
 
-  const surnameInputChange = (surname: any) => {
-    const value = surname.target.value;
-    setSurname(value); 
-    if(value.length === 0) setSurnameError('Nazwisko jest wymagane');
-    else if (value.length > 30) setSurnameError('Nazwisko nie może przekraczać 30 znaków');
+  const surnameInputChange = (surname: string) => {
+    setSurname(surname); 
+    if(surname.length === 0) setSurnameError('Nazwisko jest wymagane');
+    else if (surname.length > 30) setSurnameError('Nazwisko nie może przekraczać 30 znaków');
     const surnameRegex = /^[A-Z][a-ząęóśłżźćń]*$/;
-    if (!surnameRegex.test(value)) setSurnameError('Nazwisko musi być z wielkiej litery, bez cyfr i bez znaków specjalnych');
+    if (!surnameRegex.test(surname)) setSurnameError('Nazwisko musi być z wielkiej litery, bez cyfr i znaków specjalnych');
     else setSurnameError('');
   }
 
-  const birthdateInputChange = (birthdate: any) => {
-    const value = birthdate.target.value;
-    setBirthdate(value); 
-    let birthDate = new Date(value);
+  const birthdateInputChange = (birthdate: string) => {
+    setBirthdate(birthdate); 
+    let birthDate = new Date(birthdate);
     let diff = new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
-    if (!value) {
+    if (!birthdate) {
       setBirthdateError('Data urodzenia jest wymagana');
     } else {
       if(birthDate >= diff) setBirthdateError('Musisz mieć ukończone 18 lat');
@@ -76,25 +73,23 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     }
   }
 
-  const emailInputChange = (email: any) => {
-    const value = email.target.value;
-    setEmail(value);
-    if (value.length === 0) {
+  const emailInputChange = (email: string) => {
+    setEmail(email);
+    if (email.length === 0) {
       setEmailError('Email jest wymagany');
     } else {
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
-      if (!emailRegex.test(value)) setEmailError('Nieprawidłowy adres email');
+      if (!emailRegex.test(email)) setEmailError('Nieprawidłowy adres email');
       else setEmailError('');
     }
   };
 
-  const phoneNrInputChange = (phoneNr: any) => {
-    const value = phoneNr.target.value;
-    setPhoneNr(value); 
-    if (!value) {
+  const phoneNrInputChange = (phoneNr: number) => {
+    setPhoneNr(phoneNr); 
+    if (!phoneNr) {
       setPhoneNrError("Numer telefonu jest wymagany");
     } else {
-      if(value < 100000000 || value > 999999999) setPhoneNrError('Nieprawidłowy numer telefonu');
+      if(phoneNr < 100000000 || phoneNr > 999999999) setPhoneNrError('Nieprawidłowy numer telefonu');
       else setPhoneNrError('');
     }
   }
@@ -107,16 +102,21 @@ const BuyTicket: FC<BuyTicketProps> = () => {
           <form className={styles.buyTicketFormContainer} onSubmit={(e) => buyTicket(e)}>
             <label >Formularz kupowania biletu na:</label>
             <label><b>{event?._nazwa}</b></label>
-            <input className={styles.formInput} type="text" placeholder="Imię" value={name} onChange={nameInputChange}/>
+            <input className={styles.formInput} type="text" placeholder="Imię" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
               {nameError && <span className={styles.formError}>{nameError}</span>}
-            <input className={styles.formInput} type="text" placeholder="Nazwisko" value={surname} onChange={surnameInputChange}/>
+
+            <input className={styles.formInput} type="text" placeholder="Nazwisko" value={surname} onChange={(e) => surnameInputChange(e.target.value)}/>
               {surnameError && <span className={styles.formError}>{surnameError}</span>}
-            <input className={styles.formInput} placeholder="Data urodzenia" type={dateInputType} value={birthdate} onChange={birthdateInputChange} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
+
+            <input className={styles.formInput} placeholder="Data urodzenia" type={dateInputType} value={birthdate} onChange={(e) => birthdateInputChange(e.target.value)} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
               {birthdateError && <span className={styles.formError}>{birthdateError}</span>}
-            <input className={styles.formInput} type="text" placeholder="E-mail" value={email} onChange={emailInputChange}/>
+
+            <input className={styles.formInput} type="text" placeholder="E-mail" value={email} onChange={(e) => emailInputChange(e.target.value)}/>
               {emailError && <span className={styles.formError}>{emailError}</span>}
-            <input className={styles.formInput} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={phoneNrInputChange}/>
+
+            <input className={styles.formInput} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange(Number(e.target.value))}/>
               {phoneNrError && <span className={styles.formError}>{phoneNrError}</span>}
+
             <button type="submit">Kup bilet</button>
           </form>
         </div>

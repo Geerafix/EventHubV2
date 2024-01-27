@@ -45,12 +45,6 @@ button:hover {
     color: red;
     margin-block: -10px 0px;
 }
-
-.formInput {
-    width: 300px;
-    background-color: white;
-    box-shadow: 0px 0px 7px 0.01px rgb(156, 156, 156); 
-}
   
 .mainContainer {
     margin-inline: auto;
@@ -61,8 +55,4 @@ button:hover {
 
 .backButton {
     width: 40px;
-}
-
-.formError {
-    color: red;
 }

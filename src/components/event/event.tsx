@@ -13,8 +13,8 @@ const EventComponent: FC<EventProps> = () => {
   const [ filterBy, setFilterBy ] = useState<string>('nazwa');
   const [ startDate, setStartDate ] = useState<string>('');
   const [ endDate, setEndDate ] = useState<string>('');
-  const [ startDateType, setStartDateType ] = useState('text');
-  const [ endDateType, setEndDateType ] = useState('text');
+  const [ startDateType, setStartDateType ] = useState<string>('text');
+  const [ endDateType, setEndDateType ] = useState<string>('text');
 
   useEffect(() => {
     eds.getData().then(({ events }) => { setEventList(events); });
@@ -45,7 +45,6 @@ const EventComponent: FC<EventProps> = () => {
         return eventDate >= start && eventDate <= end;
       })
     }
-    
     setEventList(filteredEvents);
   }
 

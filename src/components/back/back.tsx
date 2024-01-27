@@ -7,7 +7,7 @@ interface BackProps {}
 
 const Back: FC<BackProps> = () => {
   return (
-    <Link to="/">
+    <Link to='/'>
       <button className={styles.backButton}>
         <ArrowLeft/>
       </button>
