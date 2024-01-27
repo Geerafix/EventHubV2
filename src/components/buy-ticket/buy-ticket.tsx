@@ -5,6 +5,7 @@ import eds from '../../services/event-data-service/event-data-service';
 import Event from '../../models/Event';
 import { Participant } from '../../models/Participant';
 import Back from '../back/back';
+import { Cart } from 'react-bootstrap-icons';
 
 interface BuyTicketProps {}
 
@@ -117,7 +118,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
             <input className={styles.formInput} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange(Number(e.target.value))}/>
               {phoneNrError && <span className={styles.formError}>{phoneNrError}</span>}
 
-            <button type="submit">Kup bilet</button>
+            <button type="submit">Kup bilet <Cart/></button>
           </form>
         </div>
       </div>

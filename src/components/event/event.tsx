@@ -3,7 +3,7 @@ import styles from './event.module.css';
 import Event from '../../models/Event';
 import { Link } from 'react-router-dom';
 import eds from '../../services/event-data-service/event-data-service';
-import { PlusLg, EraserFill, Search } from 'react-bootstrap-icons';
+import { PlusLg, EraserFill, Search, Cart, InfoCircle } from 'react-bootstrap-icons';
 
 interface EventProps {}
 
@@ -73,10 +73,10 @@ const EventComponent: FC<EventProps> = () => {
             <h2 className={styles.title}>{event._nazwa}</h2>
             <label><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</label>
             <label><span className={styles.info}>Miejsce: </span>{event._miejsce}</label>
-            <label><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toLocaleDateString()}</label>
+            <label><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toISOString().split('T')[0]}</label>
             <div className={styles.interact}>
-              <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły</Link>
-              <Link className={styles.link} to={`/kup-bilet/${ event._id }`}>Kup bilet</Link>
+              <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły <InfoCircle/></Link>
+              <Link className={styles.link} to={`/kup-bilet/${ event._id }`}>Kup bilet <Cart/></Link>
             </div>
           </div>
         ))}

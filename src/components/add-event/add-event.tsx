@@ -7,6 +7,7 @@ import Event from '../../models/Event';
 import Back from '../back/back';
 import { useNavigate } from 'react-router-dom';
 import EventForm from '../event-form/event-form';
+import { CheckLg } from 'react-bootstrap-icons';
 
 interface AddEventProps {}
 
@@ -40,7 +41,7 @@ const AddEvent: FC<AddEventProps> = () => {
     plan, setPlan,
   };
 
-  const addEvent = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isValid) {
       const newEvent: Event = new Event (0, name, type, organizer, place, maxParticipants, new Date(date), price, plan, []);
@@ -48,6 +49,14 @@ const AddEvent: FC<AddEventProps> = () => {
       navigate('/');
     }
   };
+
+  const addPlan = (newPlan: Plan) => {
+    setPlan((prevPlan: Plan[]) => [...prevPlan, newPlan]);
+  }
+
+  const deletePlan = (index: number) => {
+    setPlan((prevPlan: Plan[]) => prevPlan.filter((_, eventIndex: number) => eventIndex !== index ));
+  }
 
   useEffect(() => {
     setIsValid(
@@ -59,19 +68,22 @@ const AddEvent: FC<AddEventProps> = () => {
       date.length > 0 && dateError === '' &&
       price > 0 && priceError === ''
     );
-  }, [name, nameError, type, typeError, organizer, organizerError, place, placeError, maxParticipants, maxParticipantsError, date, dateError, price, priceError]);
+  }, [name, nameError, type, typeError, 
+      organizer, organizerError, place, placeError, 
+      maxParticipants, maxParticipantsError, 
+      date, dateError, price, priceError]);
 
   return (
     <div className={styles.AddEvent}>
       <div className={styles.mainContainer}>
         <Back/>
         <div className={styles.formContainer}>
-          <form className={styles.eventFormContainer} onSubmit={(e) => addEvent(e)}>
+          <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
             <label>Formularz dodawania wydarzenia</label>
             <EventForm {...formProps}/>
-            <button type="submit">Zatwierdź</button>
+            <button type="submit">Zatwierdź <CheckLg/></button>
           </form>
-          <AddPlan plan={plan} setPlan={setPlan}></AddPlan>
+          <AddPlan plan={plan} addPlan={addPlan} deletePlan={deletePlan}></AddPlan>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import Event from '../../models/Event';
 import AddPlan from '../add-plan/add-plan';
 import { Participant } from '../../models/Participant';
 import EventForm from '../event-form/event-form';
+import { CheckLg } from 'react-bootstrap-icons';
 
 interface EditEventProps {}
 
@@ -32,6 +33,7 @@ const EditEvent: FC<EditEventProps> = () => {
   const [ plan, setPlan ] = useState<Plan[]>([]);
   const [ participants, setParticipants ] = useState<Participant[]>([]);
   const [ isValid, setIsValid ] = useState<boolean>(false);
+  const [ formInitialized, setFormInitialized ] = useState(false);
 
   const formProps = {
     name, setName, nameError, setNameError,
@@ -44,9 +46,9 @@ const EditEvent: FC<EditEventProps> = () => {
     plan, setPlan,
   };
 
-  const editEvent = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateForm() && event) {
+    if (isValid && event) {
       const editedEvent: Event = new Event (
         event._id, name, type, organizer, place, maxParticipants, new Date(date), price, plan, participants);
       eds.putData(editedEvent);
@@ -54,7 +56,38 @@ const EditEvent: FC<EditEventProps> = () => {
     }
   };
 
-  const validateForm = () => {
+  const addPlan = (newPlan: Plan) => {
+    setPlan((prevPlan: Plan[]) => [...prevPlan, newPlan]);
+  }
+
+  const deletePlan = (index: number) => {
+    setPlan((prevPlan: Plan[]) => prevPlan.filter((_, eventIndex: number) => eventIndex !== index ));
+  }
+
+  useEffect(() => {        
+    if (!formInitialized) {
+      const fetchData = async () => {
+        try {
+            const response = await eds.getSingleData(id ? parseInt(id) : 0);
+            const event = response.event;
+            setEvent(response.event);
+            setPlan(event._plan);
+            setName(event._nazwa);
+            setType(event._rodzaj);
+            setOrganizer(event._organizator);
+            setPlace(event._miejsce);
+            setMaxParticipants(event._max_ilosc_osob);
+            setDate(event._data_wydarzenia.toISOString().split('T')[0]);
+            setPrice(event._cena_biletu);
+            setPlan(event._plan);
+            setParticipants(event._uczestnicy);
+            setFormInitialized(true);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      fetchData();
+    }
     setIsValid(
       name.length > 0 && nameError === '' &&
       type.length > 0 && typeError === '' &&
@@ -64,45 +97,22 @@ const EditEvent: FC<EditEventProps> = () => {
       date.length > 0 && dateError === '' &&
       price > 0 && priceError === ''
     );
-    return isValid;
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (id) {
-          const response = await eds.getSingleData(parseInt(id));
-          const event = response.event;
-          setEvent(response.event);
-          setPlan(event._plan);
-          setName(event._nazwa);
-          setType(event._rodzaj);
-          setOrganizer(event._organizator);
-          setPlace(event._miejsce);
-          setMaxParticipants(event._max_ilosc_osob);
-          setDate(event._data_wydarzenia.toLocaleDateString());
-          setPrice(event._cena_biletu);
-          setPlan(event._plan);
-          setParticipants(event._uczestnicy);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, [id]);
+  }, [id, name, nameError, type, typeError, 
+      organizer, organizerError, place, placeError, 
+      maxParticipants, maxParticipantsError, 
+      date, dateError, price, priceError, formInitialized]);
   
   return (
     <div className={styles.EditEvent}>
       <div className={styles.mainContainer}>
         <Back/>
         <div className={styles.formContainer}>
-          <form className={styles.eventFormContainer} onSubmit={(e) => editEvent(e)}>
+          <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
             <label>Formularz edycji wydarzenia</label>
             <EventForm {...formProps}/>
-            <button type="submit">Zatwierdź</button>
+            <button type="submit">Zatwierdź <CheckLg/></button>
           </form>
-          <AddPlan plan={plan} setPlan={setPlan}></AddPlan>
+          <AddPlan plan={plan} addPlan={addPlan} deletePlan={deletePlan}></AddPlan>
         </div>
       </div>
     </div>

@@ -1,14 +1,15 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './add-plan.module.css';
 import { Plan } from '../../models/Plan';
 import { XLg, PlusLg } from 'react-bootstrap-icons';
 
 interface AddPlanProps {
   plan: Plan[];
-  setPlan: Dispatch<SetStateAction<Plan[]>>;
+  addPlan: (newPlan: Plan) => void;
+  deletePlan: (index: number) => void;
 }
 
-const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
+const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
   const [ startTimeType, setStartTimeType ] = useState('text');
   const [ endTimeType, setEndTimeType ] = useState('text');
   const [ name, setName ] = useState('');
@@ -17,18 +18,18 @@ const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
   const [ startHourError, setStartHourError ] = useState('');
   const [ endHour, setEndHour ] = useState('');
   const [ endHourError, setEndHourError ] = useState('');
-  const [isValid, setIsValid] = useState(false);
+  const [ isValid, setIsValid] = useState(false);
 
-  const addPlan = (e: React.FormEvent<HTMLFormElement>) => {
+  const updateAddPlan = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isValid) {
       const newPlan = new Plan(name, startHour, endHour);
-      setPlan((prevPlan: Plan[]) => [...prevPlan, newPlan]);
+      addPlan(newPlan);
     }
   };
 
-  const deletePlan = (index: number) => {
-    setPlan((prevPlan: Plan[]) => prevPlan.filter((_, eventIndex: number) => eventIndex !== index ));
+  const updateDeletePlan = (index: number) => {
+    deletePlan(index);
   };
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
   return (
     <div className={styles.AddPlan}>
       <div className={styles.createPlan}>
-        <form className={styles.createPlanInputs} onSubmit={(e) => addPlan(e)}>
+        <form className={styles.createPlanInputs} onSubmit={(e) => updateAddPlan(e)}>
           <label>Utwórz plan: </label>
           <input className={styles.formInput} type="text" placeholder="Nazwa planu" value={name} onChange={nameInputChange}/>
           <input className={styles.formInput} placeholder="Godzina rozp." value={startHour} onChange={startHourInputChange} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
@@ -83,7 +84,7 @@ const AddPlan: FC<AddPlanProps> = ({plan, setPlan}) => {
               od <b>{planItem._godz_rozpoczecia.toString()}</b> 
               do <b>{planItem._godz_zakonczenia.toString()}</b>
             </div>
-            <button className={styles.deleteButton} onClick={() => deletePlan(index)}><XLg/></button>
+            <button className={styles.deleteButton} onClick={() => updateDeletePlan(index)}><XLg/></button>
           </li>
         ))}
       </ul>
