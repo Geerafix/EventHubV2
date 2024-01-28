@@ -21,7 +21,15 @@
           "godz_zakonczenia": "12:59"
         }
       ],
-      "uczestnicy": []
+      "uczestnicy": [
+        {
+          "imie": "Jeden",
+          "nazwisko": "Jeden",
+          "data_urodzenia": "0123-03-12T00:00:00.000Z",
+          "email": "123@wp.pl",
+          "nr_telefonu": 123123123
+        }
+      ]
     },
     {
       "id": 2,
@@ -77,7 +85,35 @@
           "godz_zakonczenia": "09:00"
         }
       ],
-      "uczestnicy": []
+      "uczestnicy": [
+        {
+          "imie": "Cztery",
+          "nazwisko": "Cztery",
+          "data_urodzenia": "0123-03-12T00:00:00.000Z",
+          "email": "123@wp.pl",
+          "nr_telefonu": 123123123
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nazwa": "Wydarzenie 5",
+      "rodzaj": "Rodzaj 2",
+      "organizator": "Organizator 3",
+      "miejsce": "123",
+      "max_ilosc_osob": 1000,
+      "data_wydarzenia": "2024-01-29T00:00:00.000Z",
+      "cena_biletu": 11,
+      "plan": [],
+      "uczestnicy": [
+        {
+          "imie": "Napiąte",
+          "nazwisko": "Napiąte",
+          "data_urodzenia": "2001-12-12T00:00:00.000Z",
+          "email": "napi@wp.pl",
+          "nr_telefonu": 564291023
+        }
+      ]
     }
   ]
 }

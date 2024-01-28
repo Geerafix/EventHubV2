@@ -68,9 +68,9 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
       <div className={styles.createPlan}>
         <form className={styles.createPlanInputs} onSubmit={(e) => updateAddPlan(e)}>
           <label><b>Utwórz plan: </b></label>
-          <input className={styles.formInput} type="text" placeholder="Nazwa planu" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
-          <input className={`${styles.formInput} ${styles.widthFix}`} placeholder="Godzina rozp." value={startHour} onChange={(e) => startHourInputChange(e.target.value)} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
-          <input className={`${styles.formInput} ${styles.widthFix}`} placeholder="Godzina zak." value={endHour} onChange={(e) => endHourInputChange(e.target.value)} type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
+          <input className={`${styles.formInput} ${nameError && styles.error}`} type="text" placeholder="Nazwa planu" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
+          <input className={`${styles.formInput} ${styles.widthFix} ${startHourError && styles.error}`} placeholder="Godzina rozp." value={startHour} onChange={(e) => startHourInputChange(e.target.value)} type={startTimeType} onFocus={() => setStartTimeType('time')} onBlur={() => setStartTimeType('text')}/>
+          <input className={`${styles.formInput} ${styles.widthFix} ${endHourError && styles.error}`} placeholder="Godzina zak." value={endHour} onChange={(e) => endHourInputChange(e.target.value)} type={endTimeType} onFocus={() => setEndTimeType('time')} onBlur={() => setEndTimeType('text')}/>
           <button type="submit" className={styles.addButton}>Dodaj <PlusLg/></button>
         </form>
         {nameError && <span className={styles.formError}>{nameError}</span>}

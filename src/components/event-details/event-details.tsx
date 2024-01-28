@@ -34,14 +34,14 @@ const EventDetails: FC<EventDetailsProps> = () => {
         <Back/>
         <div className={styles.eventData}>
           <h2 className={styles.title}> {event?._nazwa}</h2>
-          <h3>Szczegóły:</h3>
-          <label><span className={styles.info}>Rodzaj: </span>{event?._rodzaj}</label>
-          <label><span className={styles.info}>Miejsce: </span>{event?._miejsce}</label>
-          <label><span className={styles.info}>Organizator: </span>{event?._organizator}</label>
-          <label><span className={styles.info}>Liczba uczestników : </span>{event?._uczestnicy.length}</label>
-          <label><span className={styles.info}>Maks. ilość osób: </span>{event?._max_ilosc_osob}</label>
-          <label><span className={styles.info}>Data wydarzenia: </span>{event?._data_wydarzenia.toISOString().split('T')[0]}</label>
-          <label><span className={styles.info}>Cena biletu: </span>{event?._cena_biletu} zł</label>
+          <h2>Szczegóły:</h2>
+          <span><span className={styles.info}>Rodzaj: </span>{event?._rodzaj}</span>
+          <span><span className={styles.info}>Miejsce: </span>{event?._miejsce}</span>
+          <span><span className={styles.info}>Organizator: </span>{event?._organizator}</span>
+          <span><span className={styles.info}>Liczba uczestników : </span>{event?._uczestnicy.length}</span>
+          <span><span className={styles.info}>Maks. ilość osób: </span>{event?._max_ilosc_osob}</span>
+          <span><span className={styles.info}>Data wydarzenia: </span>{event?._data_wydarzenia.toISOString().split('T')[0]}</span>
+          <span><span className={styles.info}>Cena biletu: </span>{event?._cena_biletu} zł</span>
           <PlanList eventPlan={event?._plan}></PlanList>
           <div className={styles.interact}>
             <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>

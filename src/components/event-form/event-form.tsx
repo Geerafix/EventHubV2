@@ -83,25 +83,25 @@ const EventForm: FC<EventFormProps> = (props) => {
 
   return (
     <div className={styles.eventFContainer}>
-      <input className={styles.formInput} placeholder="Nazwa wydarzenia" value={props.name} onChange={(e) => nameInputChange(e.target.value)}/>
+      <input className={`${styles.formInput} ${props.nameError && styles.error}`} placeholder="Nazwa wydarzenia" value={props.name} onChange={(e) => nameInputChange(e.target.value)}/>
         {props.nameError && <span className={styles.formError}>{props.nameError}</span>}
 
-      <input className={styles.formInput} placeholder="Rodzaj wydarzenia" value={props.type} onChange={(e) => typeInputChange(e.target.value)}/>
+      <input className={`${styles.formInput} ${props.typeError && styles.error}`} placeholder="Rodzaj wydarzenia" value={props.type} onChange={(e) => typeInputChange(e.target.value)}/>
         {props.typeError && <span className={styles.formError}>{props.typeError}</span>}
 
-      <input className={styles.formInput} placeholder="Organizator wydarzenia" value={props.organizer} onChange={(e) => organizerInputChange(e.target.value)}/>
+      <input className={`${styles.formInput} ${props.organizerError && styles.error}`} placeholder="Organizator wydarzenia" value={props.organizer} onChange={(e) => organizerInputChange(e.target.value)}/>
         {props.organizerError && <span className={styles.formError}>{props.organizerError}</span>}
 
-      <input className={styles.formInput} placeholder="Miejsce wydarzenia" value={props.place} onChange={(e) => placeInputChange(e.target.value)}/>
+      <input className={`${styles.formInput} ${props.placeError && styles.error}`} placeholder="Miejsce wydarzenia" value={props.place} onChange={(e) => placeInputChange(e.target.value)}/>
         {props.placeError && <span className={styles.formError}>{props.placeError}</span>}
 
-      <input className={styles.formInput} type="number" placeholder="Maks. ilość osób" value={props.maxParticipants} onChange={(e) => maxParticipantsInputChange(Number(e.target.value))}/>
+      <input className={`${styles.formInput} ${props.maxParticipantsError && styles.error}`} type="number" placeholder="Maks. ilość osób" value={props.maxParticipants} onChange={(e) => maxParticipantsInputChange(Number(e.target.value))}/>
         {props.maxParticipantsError && <span className={styles.formError}>{props.maxParticipantsError}</span>}
 
-      <input className={styles.formInput} value={props.date} onChange={(e) => dateInputChange(e.target.value)} placeholder="Data wydarzenia" type={dateInputType} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
+      <input className={`${styles.formInput} ${props.dateError && styles.error}`} value={props.date} onChange={(e) => dateInputChange(e.target.value)} placeholder="Data wydarzenia" type={dateInputType} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
         {props.dateError && <span className={styles.formError}>{props.dateError}</span>}
 
-      <input className={styles.formInput} type="number" placeholder="Cena biletu" value={props.price} onChange={(e) => priceInputChange(Number(e.target.value))}/>
+      <input className={`${styles.formInput} ${props.priceError && styles.error}`} type="number" placeholder="Cena biletu" value={props.price} onChange={(e) => priceInputChange(Number(e.target.value))}/>
         {props.priceError && <span className={styles.formError}>{props.priceError}</span>}
     </div>
   );

@@ -75,9 +75,9 @@ const EventComponent: FC<EventProps> = () => {
         {eventList.map((event, i) => (
           <div key = { i } className={styles.eventDataMain}>
             <h2 className={styles.title}>{event._nazwa}</h2>
-            <label><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</label>
-            <label><span className={styles.info}>Miejsce: </span>{event._miejsce}</label>
-            <label><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toISOString().split('T')[0]}</label>
+            <span><span className={styles.info}>Rodzaj: </span>{event._rodzaj}</span>
+            <span><span className={styles.info}>Miejsce: </span>{event._miejsce}</span>
+            <span><span className={styles.info}>Data wydarzenia: </span>{event._data_wydarzenia.toISOString().split('T')[0]}</span>
             <div className={styles.interact}>
               <Link className={styles.link} to={`/szczegoly/${ event._id }`}>Szczegóły wydarzenia <InfoCircle/></Link>
               <Link to={`/kup-bilet/${ event?._id }`} hidden={event?._max_ilosc_osob === event?._uczestnicy.length} className={styles.link}>Kup bilet <Cart/></Link>

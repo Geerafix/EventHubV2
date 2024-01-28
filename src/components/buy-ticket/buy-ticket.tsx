@@ -113,19 +113,19 @@ const BuyTicket: FC<BuyTicketProps> = () => {
           <form className={styles.buyTicketFormContainer} onSubmit={(e) => buyTicket(e)}>
             <label><b>Formularz kupowania biletu na:</b></label>
             <label><b>{event?._nazwa}</b></label>
-            <input className={styles.formInput} type="text" placeholder="Imię" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
+            <input className={`${styles.formInput} ${nameError && styles.error}`} type="text" placeholder="Imię" value={name} onChange={(e) => nameInputChange(e.target.value)}/>
               {nameError && <span className={styles.formError}>{nameError}</span>}
 
-            <input className={styles.formInput} type="text" placeholder="Nazwisko" value={surname} onChange={(e) => surnameInputChange(e.target.value)}/>
+            <input className={`${styles.formInput} ${surnameError && styles.error}`} type="text" placeholder="Nazwisko" value={surname} onChange={(e) => surnameInputChange(e.target.value)}/>
               {surnameError && <span className={styles.formError}>{surnameError}</span>}
 
-            <input className={styles.formInput} placeholder="Data urodzenia" type={dateInputType} value={birthdate} onChange={(e) => birthdateInputChange(e.target.value)} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
+            <input className={`${styles.formInput} ${birthdateError && styles.error}`} placeholder="Data urodzenia" type={dateInputType} value={birthdate} onChange={(e) => birthdateInputChange(e.target.value)} onFocus={() => setDateInputType('date')} onBlur={() => setDateInputType('text')}/>
               {birthdateError && <span className={styles.formError}>{birthdateError}</span>}
 
-            <input className={styles.formInput} type="text" placeholder="E-mail" value={email} onChange={(e) => emailInputChange(e.target.value)}/>
+            <input className={`${styles.formInput} ${emailError && styles.error}`} type="text" placeholder="E-mail" value={email} onChange={(e) => emailInputChange(e.target.value)}/>
               {emailError && <span className={styles.formError}>{emailError}</span>}
 
-            <input className={styles.formInput} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange(Number(e.target.value))}/>
+            <input className={`${styles.formInput} ${phoneNrError && styles.error}`} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange(Number(e.target.value))}/>
               {phoneNrError && <span className={styles.formError}>{phoneNrError}</span>}
 
             <button type="submit">Kup bilet <Cart/></button>

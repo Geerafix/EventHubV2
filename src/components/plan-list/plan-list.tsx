@@ -9,7 +9,7 @@ interface PlanListProps {
 const PlanList: FC<PlanListProps> = ({eventPlan}) => {
   return eventPlan?.length === 0 ? null : (
     <div className={styles.planContainer}>
-      <h3>Plan wydarzenia:</h3>
+      <h2>Plan wydarzenia:</h2>
       <ul>
         {eventPlan?.map((planItem, index) => (
           <li key={index}>

@@ -51,3 +51,9 @@ ul {
 .widthFix {
     width: 120px;
 }
+
+.error {
+    border-style: solid;
+    border-color: #652F2F;
+    border-width: 2px;
+}
