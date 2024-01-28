@@ -48,7 +48,7 @@ const AddEvent: FC<AddEventProps> = () => {
       eds.postData(newEvent);
       navigate('/');
     } else {
-      alert("Uzupełnij lub popraw dane w formularzu!");
+      alert("Uzupełnij lub popraw dane w formularzu wydarzenia!");
     }
   };
 

@@ -54,7 +54,7 @@ const EditEvent: FC<EditEventProps> = () => {
       eds.putData(editedEvent);
       navigate(`/szczegoly/${id}`);
     } else {
-      alert("Uzupełnij lub popraw dane w formularzu!");
+      alert("Uzupełnij lub popraw dane w formularzu edycji!");
     }
   };
 

@@ -34,7 +34,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
       eds.putData(event);
       navigate('/'); 
     } else {
-      alert("Uzupełnij lub popraw dane w formularzu biletu!");
+      alert("Uzupełnij lub popraw dane w formularzu kupowania biletu!");
     }
   };
 
