@@ -16,12 +16,12 @@ Punktacja elementów technicznych (15pkt):
 + wykorzystanie komponentów prezentacyjnych (co najmniej 2 przypadki) - 1pkt,
 + dwukierunkowa komunikacja pomiędzy komponentami - 1pkt,
 2 co najmniej 4 komponenty reużywalne (komponenty, które mogą być użyte bez zmian w kodzie komponentu w innym miejscu projektu) - 2pkt
-? modyfikacja danych odbywa się tylko w jednym komponencie - 1pkt
++ modyfikacja danych odbywa się tylko w jednym komponencie - 1pkt
 + operacje modyfikacji danych za pomocą 4 rodzajów żądań http - 2pkt
 + żądania do serwera są zapisane w jednym oddzielnym pliku (serwis) - 1pkt
 + routing (ścieżki 'routes', w tym jedna z parametrem) - 1pkt
 + wykorzystanie dwóch zmiennych właściwości routingu (np. navigate, params) - 1pkt
 + brak błędów/ostrzeżeń w konsoli przegladarki - 1pkt
 
-sprawdzić
+sprawdzić dostępność
  -->

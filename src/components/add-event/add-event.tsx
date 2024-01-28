@@ -82,7 +82,7 @@ const AddEvent: FC<AddEventProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
-            <label><b>Formularz dodawania wydarzenia</b></label>
+            <h3><b>Formularz dodawania wydarzenia</b></h3>
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>

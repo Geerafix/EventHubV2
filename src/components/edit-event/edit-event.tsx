@@ -33,7 +33,7 @@ const EditEvent: FC<EditEventProps> = () => {
   const [ plan, setPlan ] = useState<Plan[]>([]);
   const [ participants, setParticipants ] = useState<Participant[]>([]);
   const [ isValid, setIsValid ] = useState<boolean>(false);
-  const [ formInitialized, setFormInitialized ] = useState(false);
+  const [ formInitialized, setFormInitialized ] = useState<boolean>(false);
 
   const formProps = {
     name, setName, nameError, setNameError,
@@ -111,7 +111,7 @@ const EditEvent: FC<EditEventProps> = () => {
         <Back/>
         <div className={styles.formContainer}>
           <form className={styles.eventFormContainer} onSubmit={(e) => submitEvent(e)}>
-            <label><b>Formularz edycji wydarzenia</b></label>
+            <h3><b>Formularz edycji wydarzenia</b></h3>
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>
