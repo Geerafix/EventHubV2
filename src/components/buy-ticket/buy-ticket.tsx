@@ -22,14 +22,14 @@ const BuyTicket: FC<BuyTicketProps> = () => {
   const [ birthdateError, setBirthdateError ] = useState<string>('');
   const [ email, setEmail ] = useState<string>('');
   const [ emailError, setEmailError ] = useState<string>('');
-  const [ phoneNr, setPhoneNr ] = useState<number>();
+  const [ phoneNr, setPhoneNr ] = useState('');
   const [ phoneNrError, setPhoneNrError ] = useState<string>('');
   const [ isValid, setIsValid ] = useState<boolean>(false);
 
   const buyTicket = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isValid && phoneNr) {
-      const newParticipant: Participant = new Participant (name, surname, new Date(birthdate), email, phoneNr)
+      const newParticipant: Participant = new Participant (name, surname, new Date(birthdate), email, Number(phoneNr))
       event?.addParticipant(newParticipant);
       eds.putData(event);
       navigate('/'); 
@@ -95,12 +95,12 @@ const BuyTicket: FC<BuyTicketProps> = () => {
     }
   };
 
-  const phoneNrInputChange = (phoneNr: number) => {
+  const phoneNrInputChange = (phoneNr: string) => {
     setPhoneNr(phoneNr); 
     if (!phoneNr) {
       setPhoneNrError("Numer telefonu jest wymagany");
     } else {
-      if(phoneNr < 100000000 || phoneNr > 999999999) setPhoneNrError('Nieprawidłowy numer telefonu');
+      if(Number(phoneNr) < 100000000 || Number(phoneNr) > 999999999) setPhoneNrError('Nieprawidłowy numer telefonu');
       else setPhoneNrError('');
     }
   }
@@ -125,7 +125,7 @@ const BuyTicket: FC<BuyTicketProps> = () => {
             <input className={`${styles.formInput} ${emailError && styles.error}`} type="text" placeholder="E-mail" value={email} onChange={(e) => emailInputChange(e.target.value)}/>
               {emailError && <span className={styles.formError}>{emailError}</span>}
 
-            <input className={`${styles.formInput} ${phoneNrError && styles.error}`} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange(Number(e.target.value))}/>
+            <input className={`${styles.formInput} ${phoneNrError && styles.error}`} type="number" placeholder="Numer telefonu" value={phoneNr} onChange={(e) => phoneNrInputChange((e.target.value))}/>
               {phoneNrError && <span className={styles.formError}>{phoneNrError}</span>}
 
             <button type="submit">Kup bilet <Cart/></button>

@@ -28,6 +28,13 @@
           "data_urodzenia": "0123-03-12T00:00:00.000Z",
           "email": "123@wp.pl",
           "nr_telefonu": 123123123
+        },
+        {
+          "imie": "Adam",
+          "nazwisko": "Addada",
+          "data_urodzenia": "0231-03-12T00:00:00.000Z",
+          "email": "123@wp.pl",
+          "nr_telefonu": 123321999
         }
       ]
     },
