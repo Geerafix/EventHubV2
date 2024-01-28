@@ -9,6 +9,7 @@ import AddPlan from '../add-plan/add-plan';
 import { Participant } from '../../models/Participant';
 import EventForm from '../event-form/event-form';
 import { CheckLg } from 'react-bootstrap-icons';
+import PlanListForm from '../plan-list-form/plan-list-form';
 
 interface EditEventProps {}
 
@@ -115,7 +116,8 @@ const EditEvent: FC<EditEventProps> = () => {
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>
-          <AddPlan plan={plan} addPlan={addPlan} deletePlan={deletePlan}></AddPlan>
+          <AddPlan addPlan={addPlan}></AddPlan>
+          <PlanListForm plan={plan} updateDeletePlan={deletePlan}></PlanListForm>
         </div>
       </div>
     </div>

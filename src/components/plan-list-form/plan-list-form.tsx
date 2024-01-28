@@ -9,6 +9,10 @@ interface PlanListFormProps {
 }
 
 const PlanListForm: FC<PlanListFormProps> = ({plan, updateDeletePlan}) => {
+  const deletePlan = (index: number) => {
+    updateDeletePlan(index)
+  }
+
   return (
     <ul>
       {plan.map((planItem, index) => (
@@ -19,7 +23,7 @@ const PlanListForm: FC<PlanListFormProps> = ({plan, updateDeletePlan}) => {
             od <b>{planItem._godz_rozpoczecia.toString()}</b> 
             do <b>{planItem._godz_zakonczenia.toString()}</b>
           </div>
-          <button className={styles.deleteButton} onClick={() => updateDeletePlan(index)}>Usuń <XLg/></button>
+          <button className={styles.deleteButton} onClick={() => deletePlan(index)}>Usuń <XLg/></button>
         </li>
       ))}
     </ul>

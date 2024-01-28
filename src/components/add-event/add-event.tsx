@@ -8,6 +8,7 @@ import Back from '../back/back';
 import { useNavigate } from 'react-router-dom';
 import EventForm from '../event-form/event-form';
 import { CheckLg } from 'react-bootstrap-icons';
+import PlanListForm from '../plan-list-form/plan-list-form';
 
 interface AddEventProps {}
 
@@ -86,7 +87,8 @@ const AddEvent: FC<AddEventProps> = () => {
             <EventForm {...formProps}/>
             <button type="submit">Zatwierdź <CheckLg/></button>
           </form>
-          <AddPlan plan={plan} addPlan={addPlan} deletePlan={deletePlan}></AddPlan>
+          <AddPlan addPlan={addPlan}></AddPlan>
+          <PlanListForm plan={plan} updateDeletePlan={deletePlan}></PlanListForm>
         </div>
       </div>
     </div>

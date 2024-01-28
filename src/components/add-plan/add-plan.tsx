@@ -2,15 +2,12 @@ import React, { FC, useEffect, useState } from 'react';
 import styles from './add-plan.module.css';
 import { Plan } from '../../models/Plan';
 import { PlusLg } from 'react-bootstrap-icons';
-import PlanListForm from '../plan-list-form/plan-list-form';
 
 interface AddPlanProps {
-  plan: Plan[];
   addPlan: (newPlan: Plan) => void;
-  deletePlan: (index: number) => void;
 }
 
-const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
+const AddPlan: FC<AddPlanProps> = ({addPlan}) => {
   const [ startTimeType, setStartTimeType ] = useState('text');
   const [ endTimeType, setEndTimeType ] = useState('text');
   const [ name, setName ] = useState('');
@@ -29,10 +26,6 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
     } else {
       alert("Uzupełnij lub popraw dane w formularzu planu!");
     }
-  };
-
-  const updateDeletePlan = (index: number) => {
-    deletePlan(index);
   };
 
   useEffect(() => {
@@ -77,7 +70,6 @@ const AddPlan: FC<AddPlanProps> = ({plan, addPlan, deletePlan}) => {
         {startHourError && <span className={styles.formError}>{startHourError}</span>}
         {endHourError && <span className={styles.formError}>{endHourError}</span>}
       </div>
-      <PlanListForm plan={plan} updateDeletePlan={updateDeletePlan}></PlanListForm>
     </div>
   );
 };

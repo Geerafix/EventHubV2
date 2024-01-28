@@ -11,14 +11,24 @@
       "cena_biletu": 100,
       "plan": [
         {
-          "nazwa": "Plan 1",
-          "godz_rozpoczecia": "12:12",
-          "godz_zakonczenia": "12:23"
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
         },
         {
-          "nazwa": "Plan 2",
-          "godz_rozpoczecia": "12:23",
-          "godz_zakonczenia": "12:59"
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
         }
       ],
       "uczestnicy": [
@@ -111,7 +121,23 @@
       "max_ilosc_osob": 1000,
       "data_wydarzenia": "2024-01-29T00:00:00.000Z",
       "cena_biletu": 11,
-      "plan": [],
+      "plan": [
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        }
+      ],
       "uczestnicy": [
         {
           "imie": "Napiąte",
@@ -121,6 +147,29 @@
           "nr_telefonu": 564291023
         }
       ]
+    },
+    {
+      "id": 6,
+      "nazwa": "Nowy 1",
+      "rodzaj": "new",
+      "organizator": "new",
+      "miejsce": "new",
+      "max_ilosc_osob": 1000,
+      "data_wydarzenia": "3444-12-13T00:00:00.000Z",
+      "cena_biletu": 123,
+      "plan": [
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:35",
+          "godz_zakonczenia": "12:55"
+        },
+        {
+          "nazwa": "123",
+          "godz_rozpoczecia": "12:35",
+          "godz_zakonczenia": "12:55"
+        }
+      ],
+      "uczestnicy": []
     }
   ]
 }
