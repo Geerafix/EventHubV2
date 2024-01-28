@@ -159,17 +159,70 @@
       "cena_biletu": 123,
       "plan": [
         {
-          "nazwa": "123",
-          "godz_rozpoczecia": "12:35",
-          "godz_zakonczenia": "12:55"
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
         },
         {
-          "nazwa": "123",
-          "godz_rozpoczecia": "12:35",
-          "godz_zakonczenia": "12:55"
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
+        },
+        {
+          "nazwa": "Nowy plan1",
+          "godz_rozpoczecia": "12:03",
+          "godz_zakonczenia": "12:35"
         }
       ],
-      "uczestnicy": []
+      "uczestnicy": [
+        {
+          "imie": "Nowyuczestnik",
+          "nazwisko": "Nowy",
+          "data_urodzenia": "0123-03-12T00:00:00.000Z",
+          "email": "123@wp.pl",
+          "nr_telefonu": 123123123
+        }
+      ]
     }
   ]
 }

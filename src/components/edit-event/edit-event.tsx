@@ -98,7 +98,7 @@ const EditEvent: FC<EditEventProps> = () => {
       place.length > 0 && placeError === '' &&
       maxParticipants > 0 && maxParticipantsError === '' &&
       date.length > 0 && dateError === '' &&
-      price > 0 && priceError === ''
+      price >= 0 && priceError === ''
     );
     document.title = "Edycja wydarzenia";
   }, [id, name, nameError, type, typeError, 
